@@ -1,0 +1,47 @@
+* { margin: 0 auto; padding: 0; }
+
+body
+{
+	background: url('../images/login-bg.png') no-repeat bottom center;
+	background-color: #009933;
+	font-family: "verdana";
+	font-size: 14px;
+	color: #000;
+	overflow-y:scroll;
+	overflow-x:auto;
+	border: solid black 2pt;
+	
+	/*Base dimensions*/
+	width: 1024px;
+	height: 768px;
+}
+
+#loginwrapper
+{
+	overflow: hidden;
+	/*width: 100%;*/
+}
+
+/* 1em  = 16px */
+
+#loginformcontainer
+{
+	border: dashed red 2pt;
+	float: right;
+	padding-top: 24.75em;
+	padding-right: 10em;
+	/*width: 45%;*/
+}
+
+#loginformcontainer ul li
+{
+	list-style: none;
+	padding-bottom: 2.75em;
+}
+
+#loginformcontainer ul li a.loginbutton img
+{
+	border: none;
+	float: right;
+	outline: none; /*no dotted line on visited links*/
+}

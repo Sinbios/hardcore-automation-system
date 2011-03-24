@@ -1,0 +1,67 @@
+* { margin: 0 auto; padding: 0; }
+
+body
+{
+	background: #FFF;
+	background-color: #009933;
+	font-family: "verdana";
+	font-size: 14px;
+	color: #000;
+	overflow-y:scroll;
+	overflow-x:auto;
+	
+	/*Base dimensions*/
+	width: 1024px;
+	height: 768px;
+}
+
+#loginwrapper
+{
+	overflow: hidden;
+	/*width: 100%;*/
+}
+
+/* 1em  = 16px */
+#loginlogocontainer
+{
+	float: left;
+	padding-top: 10.375em;
+	padding-left: 3.75em;
+	/*width: 45%;*/
+}
+
+#loginformcontainer
+{
+	float: right;
+	padding-top: 21.375em;
+	padding-right: 4.375em;
+	/*width: 45%;*/
+}
+
+#loginformcontainer ul li
+{
+	list-style: none;
+	padding-bottom: 1.5em;
+}
+
+#loginformcontainer ul li img.useridimg
+{
+	margin-left: 2.175em;
+}
+
+#loginformcontainer input.textfields
+{
+	width: 15em;
+	height: 1.5625em;
+	border: 1px solid #9CB7CE;
+	font-family: "Verdana";
+	font-size: 1em;
+	margin-left: 0.875em;
+}
+
+#loginformcontainer input.submitbutton
+{
+	border: none;
+	float: right;
+	outline: none; /*no dotted line on visited links*/
+}
