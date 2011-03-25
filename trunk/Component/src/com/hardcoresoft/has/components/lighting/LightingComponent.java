@@ -1,108 +1,105 @@
-package com.hardcoresoft.has;
-import java.util.*; 
+package com.hardcoresoft.has.components.lighting;
+
+import java.util.*;
+import com.hardcoresoft.has.components.HASComponent;
 import com.hardcoresoft.has.exceptions.*;
 
-public class LightingComponent extends HASComponent {
+public class LightingComponent extends HASComponent implements
+		ILightingComponent
+{
 
-	ArrayList<Light> lights = new ArrayList<Light>();
-	
+	HashMap<String, Light> lights = new HashMap<String, Light>();
+
 	@Override
-	protected void MessageHandler(String msg) throws Exception {
+	protected void MessageHandler(String msg) throws Exception
+	{
 		// TODO: Parse the message and do something with it
 	}
-	
+
+	protected void Initialize()
+	{
+
+	}
+
 	public boolean turnLightsOn()
 	{
 		boolean success = true;
-		for(Light light : lights)
+		for (Light light : lights.values())
 		{
 			try
 			{
 				light.turnLightOn();
-			}
-			catch(Exception ex)
+			} catch (Exception ex)
 			{
 				success = false;
 				LogException(ex);
-			}			
+			}
 		}
 		return success;
 	}
-	
+
 	public boolean turnLightsOff()
 	{
 		boolean success = true;
-		for(Light light : lights)
+		for (Light light : lights.values())
 		{
 			try
 			{
 				light.turnLightOff();
-			}
-			catch(Exception ex)
+			} catch (Exception ex)
 			{
 				success = false;
 				LogException(ex);
-			}			
+			}
 		}
 		return success;
 	}
-	
+
 	public boolean setBrightness(int brightness)
-	{		
+	{
 		boolean success = true;
-		for(Light light : lights)
+		for (Light light : lights.values())
 		{
 			try
 			{
 				light.setBrightness(brightness);
-			}
-			catch(Exception ex)
+			} catch (Exception ex)
 			{
 				success = false;
 				LogException(ex);
-			}			
+			}
 		}
 		return success;
-	}	
-	
+	}
+
 	public boolean setTemperature(int temp)
 	{
 		boolean success = true;
-		for(Light light : lights)
+		for (Light light : lights.values())
 		{
 			try
 			{
 				light.setTemperature(temp);
-			}
-			catch(Exception ex)
+			} catch (Exception ex)
 			{
 				success = false;
 				LogException(ex);
-			}			
+			}
 		}
 		return success;
 	}
-	
+
 	public void addLight(String name) throws NameConflictException
 	{
-		for(Light light : lights)
+		if (lights.containsKey(name))
 		{
-			if(light.name == name)
-				throw new NameConflictException(name);
+			throw new NameConflictException(name);
 		}
-		lights.add(new Light(name,false,0,0));
+		lights.put(name, new Light(false, 0, 0));
 	}
-	
-	public boolean removeLight(String name) throws NotFoundException
+
+	public boolean removeLight(String name)
 	{
-		for(Light light : lights)
-		{
-			if(light.name == name)
-			{
-				lights.remove(light);
-				return true;
-			}
-		}
-		throw new NotFoundException(name);
+		return (lights.remove(name) == null);
 	}
 }
