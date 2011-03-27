@@ -1,8 +1,5 @@
 package com.hardcoresoft.has.datastorage;
 import java.util.Date;
-import java.util.ListIterator;
-
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 public class HVACScheduleNode {
 	
