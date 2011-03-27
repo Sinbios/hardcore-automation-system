@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/hvac" xmlns:tns="http://www.example.org/hvac" elementFormDefault="qualified">
+
+    <element name="ipAddress" type="string"></element>
+
+    <element name="port" type="int"></element>
+
+    <element name="connected" type="boolean"></element>
+
+    <element name="currentTemperature" type="double"></element>
+
+    <element name="desiredTemperature" type="double"></element>
+
+
+    <element name="status" type="int"></element>
+    
+    
+    <element name="schedule" type="tns:hvacSchedule"></element>
+    
+    <complexType name="hvacSchedule">
+    	<sequence>
+    		<element name="action" type="tns:hvacScheduleNode" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+
+    <element name="hvac" type="tns:hvac"></element>
+    
+    <complexType name="hvac">
+    	<sequence>
+    		<element ref="tns:connected"></element>
+    		<element ref="tns:ipAddress"></element>
+    		<element ref="tns:currentTemperature"></element>
+    		<element ref="tns:desiredTemperature"></element>
+    		<element ref="tns:port"></element>
+    		<element ref="tns:schedule"></element>
+    		<element ref="tns:status"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="hvacScheduleNode">
+    	<sequence>
+    		<element name="date" type="dateTime" maxOccurs="1" minOccurs="1"></element>
+    		<element name="desiredTemperature" type="double" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

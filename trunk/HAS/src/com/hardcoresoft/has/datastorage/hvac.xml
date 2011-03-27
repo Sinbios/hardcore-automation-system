@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:hvac xmlns:tns="http://www.example.org/hvac"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/hvac hvac.xsd ">
+    <tns:connected>true</tns:connected>
+    <tns:ipAddress>192.168.0.1</tns:ipAddress>
+    <tns:currentTemperature>4.0</tns:currentTemperature>
+    <tns:desiredTemperature>52.0</tns:desiredTemperature>
+    <tns:port>21</tns:port>
+    <tns:schedule>
+        <tns:action>
+            <tns:date>2001-12-31T08:00:00</tns:date>
+            <tns:desiredTemperature>31.0</tns:desiredTemperature>
+        </tns:action>
+        <tns:action>
+            <tns:date>2001-12-31T09:00:00</tns:date>
+            <tns:desiredTemperature>1.0</tns:desiredTemperature>
+        </tns:action>
+        <tns:action>
+            <tns:date>2003-12-31T09:00:00</tns:date>
+            <tns:desiredTemperature>3.0</tns:desiredTemperature>
+        </tns:action>
+        <tns:action>
+            <tns:date>2010-12-31T09:00:00</tns:date>
+            <tns:desiredTemperature>31.0</tns:desiredTemperature>
+        </tns:action>
+    </tns:schedule>
+    <tns:status>0</tns:status>
+</tns:hvac>
