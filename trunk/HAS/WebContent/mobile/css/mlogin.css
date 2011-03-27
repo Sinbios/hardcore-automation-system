@@ -1,0 +1,45 @@
+body{
+	background: #009933;
+	color: #fff;	
+	text-align:center;
+	font-family: Verdana; 
+	font-size: 18px;
+}
+.mlogin{
+   margin-top:-20px;
+}
+.mloginwrapper{
+	width: 320px;
+	margin:0 auto;
+}
+.mloginlogo{
+	background:url("../img/mloginlogo.png") center center no-repeat;
+	height:250px;
+}
+.mlogin label{
+   width: 4em;
+   float: left;
+   text-align: right;
+   margin-top:4px;
+}
+input#name, input#password{
+   font-family: Verdana; font-size: 18px;
+   color: #009933;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+   background: #fff;
+   height: 25px;
+   padding: 0 3px;
+   width:180px;
+   border: 1px solid #000;
+}
+p{
+   height:25px;
+}
+.mloginfooter{
+   margin-top: 50px;
+   text-align: center;
+   font-size:11px;
+}
+
+

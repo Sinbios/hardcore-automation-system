@@ -1,0 +1,45 @@
+* {
+   margin:0;padding:0
+}
+body{ 
+   background: #fff;
+   color: #009933;	
+   text-align:center;
+   font-family: Verdana; 
+   font-size: 18px;
+   background-image:url("../img/mbg.png");
+   background-repeat:repeat-x;
+}
+.mwrapper{
+   width: 240px;
+   margin:0 auto;
+}
+.mcontent{
+   margin: 10px 0;
+}
+.div1{
+   float:left;
+   width:50%;
+   height:120px;
+   overflow:hidden;
+} 
+.div2{
+   margin-left:50%; 
+   width:50%; 
+   height:120px; 
+   overflow:hidden;
+} 
+img{
+   border:0;
+}
+.mfooter{
+   text-align: center;
+   font-size:11px;
+}
+.info{
+   width: 240px;
+   margin: 10px 0;
+}
+li{
+   list-style-type: none;
+}
