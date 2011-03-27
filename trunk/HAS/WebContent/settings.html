@@ -3,7 +3,7 @@
 
 <html>
 	<head>
-		<title>Home Automation System - Welcome</title>
+		<title>Home Automation System - Account Settings</title>
 		
 		<!--[if IE]>
             <link rel="stylesheet" type="text/css" href="css/ie.css" />
@@ -38,7 +38,10 @@
                 </div>
                 
                 <div id="topnavwrapper">
-       
+                    <div id="topleftnav">
+                        <p><a href="home.html">Home</a> > <a href="settings.html">Account Settings</a></p>
+                    </div>
+        
                     <div id="welcomebar">
                         <p>Welcome, &lt;userName&gt;!</p>
                     </div>
@@ -48,9 +51,9 @@
             <div id="navcont">
                 <div id="menu">
                     <ul>
-                        <li><a id="homeactive" class="home" href="home.html">Home</a></li>
+                        <li><a class="home" href="home.html">Home</a></li>
                         <li><a class="mycomponents" href="components.html">My Components</a></li>
-                        <li><a class="acctsettings" href="settings.html">Account Settings</a></li>
+                        <li><a id="acctsettingsactive" class="acctsettings" href="settings.html">Account Settings</a></li>
                     </ul>
                     <form method="post" action="ibm_security_logout" name="logout">
                         <input id="submit" class="submitbutton" type="image" src="images/signout.png">
@@ -59,12 +62,41 @@
                 </div>
             </div>
 
-            <div id="maincontainer">
-                <div id="homemessage">
-                    <p>Welcome to your Home Automation System!</p>
-                    <p>Please visit the "My Components" page to begin configuring properties of the various components in your home.</p>
-                    <p>Click "Account Settings" to perform tasks such as changing your HAS password.</p>
+            <div id="maincontainer">					
+                <div id="changepassform" class="pwdfield">
+                    <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
+                    
+                        <ul>
+                            <li>
+                                <label for="j_password">Old password:</label>
+                                <div class="fieldgroup">
+                                    <input type="password" name="oldpassword" value="" id="j_password" tabindex="1" maxlength="20">
+                                </div>
+                            </li>
+
+                            <li>
+                                <label for="j_new_password" >New password:</label>
+                                <div class="fieldgroup">
+                                    <input type="password" name="newpassword" value="" id="j_new_password" tabindex="2" maxlength="20">
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <label for="j_password_confirm" >New password (confirm):</label>
+                                <div class="fieldgroup">
+                                    <input type="password" name="verification" value="" id="j_password_confirm" tabindex="3" maxlength="20">
+                                </div>
+                            </li>
+
+                            <li class="button">
+                                <input type="submit" name="changepass" value="Submit" tabindex="4">
+                            </li>
+                        </ul>
+                        
+                    </form>
                 </div>
+
+
             </div>
         
         </div>

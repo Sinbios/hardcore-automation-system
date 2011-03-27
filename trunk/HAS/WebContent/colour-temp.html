@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>
+		<title>Home Automation System - Lighting</title>
+		<meta charset="utf-8">
+		
+		<link rel="shortcut icon" href="images/has.ico" />
+		<link rel="stylesheet" href="javascript/themes/base/jquery.ui.all.css">
+		
+		<!--[if IE]>
+            <link rel="stylesheet" type="text/css" href="css/ie.css" />
+    <![endif]-->
+    <!--[if !IE]><!-->
+    	 <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!--<![endif]-->
+		
+		<script src="javascript/jquery-1.5.1.js"></script>
+		<script src="javascript/ui/jquery.ui.core.js"></script>
+		<script src="javascript/ui/jquery.ui.widget.js"></script>
+		<script src="javascript/ui/jquery.ui.mouse.js"></script>
+		<script src="javascript/ui/jquery.ui.slider.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                $('#submit').hover(
+                    function(){ // On mouseover, swap the signout.png image
+                        $(this).attr({ src : 'images/signout-hover.png'});
+                    },
+                    function(){ 
+                        $(this).attr({ src : 'images/signout.png'});
+                    }
+                );
+            });
+        </script>
+        
+	<style>
+	#red, #green, #blue {
+		float: left;
+		clear: left;
+		width: 300px;
+		margin: 15px;
+	}
+	#swatch {
+		width: 120px;
+		height: 100px;
+		margin-top: 18px;
+		margin-left: 350px;
+		background-image: none;
+	}
+	#red .ui-slider-range { background: #ef2929; }
+	#red .ui-slider-handle { border-color: #ef2929; }
+	#green .ui-slider-range { background: #8ae234; }
+	#green .ui-slider-handle { border-color: #8ae234; }
+	#blue .ui-slider-range { background: #729fcf; }
+	#blue .ui-slider-handle { border-color: #729fcf; }
+	#demo-frame > div.demo { padding: 10px !important; };
+	</style>
+	<script>
+	function hexFromRGB(r, g, b) {
+		var hex = [
+			r.toString( 16 ),
+			g.toString( 16 ),
+			b.toString( 16 )
+		];
+		$.each( hex, function( nr, val ) {
+			if ( val.length === 1 ) {
+				hex[ nr ] = "0" + val;
+			}
+		});
+		return hex.join( "" ).toUpperCase();
+	}
+	function refreshSwatch() {
+		var red = $( "#red" ).slider( "value" ),
+			green = $( "#green" ).slider( "value" ),
+			blue = $( "#blue" ).slider( "value" ),
+			hex = hexFromRGB( red, green, blue );
+		$( "#swatch" ).css( "background-color", "#" + hex );
+	}
+	$(function() {
+		$( "#red, #green, #blue" ).slider({
+			orientation: "horizontal",
+			range: "min",
+			max: 255,
+			value: 127,
+			slide: refreshSwatch,
+			change: refreshSwatch
+		});
+		$( "#red" ).slider( "value", 255 );
+		$( "#green" ).slider( "value", 140 );
+		$( "#blue" ).slider( "value", 60 );
+	});
+	</script>        
+        
+	</head>
+
+	<body>
+        <div id="wrapper">
+            <div id="headerwrapper">
+                <div id="header">
+                    <img src="images/has-logo-main.png" />
+                </div>
+                
+                <div id="topnavwrapper">
+                    <div id="topleftnav">
+                        <p><a href="home.html">Home</a> > <a href="components.html"> My Components</a> > <a href="lighting.html"> Lighting</a> > <a href="colour-temp.html"> Adjust Colour Temperature</a></p>
+                    </div>
+        
+                    <div id="welcomebar">
+                        <p>Welcome, &lt;userName&gt;!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="navcont">
+                <div id="menu">
+                    <ul>
+                        <li><a class="home" href="home.html">Home</a></li>
+                        <li><a id="mycomponentsactive" class="mycomponents" href="components.html">My Components</a></li>
+                        <li><a class="acctsettings" href="settings.html">Account Settings</a></li>
+                    </ul>
+                    <form method="post" action="ibm_security_logout" name="logout">
+                        <input id="submit" class="submitbutton" type="image" src="images/signout.png">
+                        <input type="hidden" name="logoutExitPage" value="login.html">
+                    </form>
+                </div>
+            </div>
+
+            <div id="maincontainer">
+            
+                <div id="status">
+                    <p>Status information regarding the component goes here</p>
+                </div>
+                
+				<div id="sliderdescription">
+					Use the RGB sliders to change the colour temperature:
+				</div>
+				
+				<div id="slidercontainer">
+				
+					<div id="red"></div>
+					<div id="green"></div>
+					<div id="blue"></div>
+
+					<div id="swatch" class="ui-widget-content ui-corner-all"></div>
+				</div>
+				
+				<div id="slidersubmitbutton">
+					<form action="j_security_check" method="POST" accept-charset="UTF-8"> 
+                		<ul>
+							<li class="button">
+								<input type="submit" name="changecolourtemp" value="Set" tabindex="1">
+							</li>
+						</ul>
+					</form>
+				</div>
+            </div>
+        
+        </div>
+        
+        <div id="footer">
+            <p>Copyright &copy;2011 | Home Automation System&#0153; by Hardcoresoft | All Rights Reserved</p>
+        </div>
+    
+	</body>
+</html>

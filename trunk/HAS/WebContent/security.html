@@ -3,7 +3,7 @@
 
 <html>
 	<head>
-		<title>Home Automation System - Welcome</title>
+		<title>Home Automation System - Security</title>
 		
 		<!--[if IE]>
             <link rel="stylesheet" type="text/css" href="css/ie.css" />
@@ -28,6 +28,7 @@
             });
         </script>
 		
+		
 	</head>
 
 	<body>
@@ -38,7 +39,10 @@
                 </div>
                 
                 <div id="topnavwrapper">
-       
+                    <div id="topleftnav">
+                        <p><a href="home.html">Home</a> > <a href="components.html">My Components</a> > <a href="security.html">Security</a></p>
+                    </div>
+        
                     <div id="welcomebar">
                         <p>Welcome, &lt;userName&gt;!</p>
                     </div>
@@ -48,8 +52,8 @@
             <div id="navcont">
                 <div id="menu">
                     <ul>
-                        <li><a id="homeactive" class="home" href="home.html">Home</a></li>
-                        <li><a class="mycomponents" href="components.html">My Components</a></li>
+                        <li><a class="home" href="home.html">Home</a></li>
+                        <li><a id="mycomponentsactive" class="mycomponents" href="components.html">My Components</a></li>
                         <li><a class="acctsettings" href="settings.html">Account Settings</a></li>
                     </ul>
                     <form method="post" action="ibm_security_logout" name="logout">
@@ -60,13 +64,18 @@
             </div>
 
             <div id="maincontainer">
-                <div id="homemessage">
-                    <p>Welcome to your Home Automation System!</p>
-                    <p>Please visit the "My Components" page to begin configuring properties of the various components in your home.</p>
-                    <p>Click "Account Settings" to perform tasks such as changing your HAS password.</p>
+
+                <div id="status">
+                    <p>Status information regarding the component goes here</p>
                 </div>
+
+                <table>
+                    <tr>
+                        <td><a href="security.html"><img src="images/arm-disarm.png" /></a></td>
+                        <td><a href="config.html"><img src="images/config-sys.png" /></a></td>
+                    </tr>
+                </table>
             </div>
-        
         </div>
         
         <div id="footer">
