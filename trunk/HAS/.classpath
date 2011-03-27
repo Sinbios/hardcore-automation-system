@@ -15,5 +15,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="tomcat7/lib/quartz-all-2.0.0.jar"/>
+	<classpathentry kind="lib" path="tomcat7/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

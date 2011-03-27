@@ -5,6 +5,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import com.hardcoresoft.has.messaging.HASMessageListener;
+
 /**
  * Application Lifecycle Listener implementation class ContextListener
  *
@@ -35,7 +37,7 @@ public class ContextListener implements ServletContextListener {
 	  public void contextInitialized(ServletContextEvent event)
 	  {
 	    this.context = event.getServletContext();
-
+	    HASMessageListener.getInstance();
 	    //Output a simple message to the server's console
 	    System.out.println("Catalina says: SUP NIGGA, SERVER READY!");
 
