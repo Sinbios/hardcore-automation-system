@@ -10,8 +10,6 @@ body
 	font-family: "verdana";
 	font-size: 16px;
 	color: #000;
-	overflow-y: scroll;
-	overflow-x:auto;
 	background: url('../images/navbar-cont.png') repeat-x;
 	height: 100%;
 }
@@ -42,7 +40,7 @@ ul, li
 	overflow: hidden;
 	padding-left: 2.375em;
 	padding-bottom: 10px;
-	margin-top: 31px;
+	margin-top: 28px;
 }
 
 #topleftnav
@@ -188,7 +186,7 @@ ul, li
 
 #simpletable
 {
-    padding-top: 86px;
+    margin-top: 86px;
 }
 
 #homemessage
@@ -267,7 +265,7 @@ ul, li
 
 .pwdfield .button
 {
-    margin:10px 0 0 132px;
+    margin:10px 0 0 33px;
     width:410px;
 }
 
@@ -275,7 +273,6 @@ ul, li
 {
     vertical-align:middle;
     width: 75px;
-    height: 24px;
 }
 
 .tempfield 
@@ -321,7 +318,7 @@ ul, li
 
 .tempfield .button
 {
-    margin:10px 0 0 286px;
+    margin:10px 0 0 191px;
     width:410px;
 }
 
@@ -361,6 +358,7 @@ ul, li
 #slider
 {
 	margin-top: 35px;
+	margin-left: 115px;
 }
 
 .brightnessfield 
@@ -381,8 +379,8 @@ ul, li
 
 .brightnessfield .button
 {
-    margin:10px 0 0 286px;
-    width:410px;
+    width: 300px;
+	margin-left: 11em;
 }
 
 .pinfield 
@@ -423,20 +421,18 @@ ul, li
     width:45px;
     margin-right: 40px;
     margin-top: 5px;
-	
 }
 
 .pinfield .button
 {
     float: right;
-    margin-right: 34px;
+    margin-right: 17px;
 }
 
 .pinfield .button input
 {
-    vertical-align: middle;
+    vertical-align:middle;
     width: 60px;
-    height: 24px;
 }
 
 #sliderdescription
@@ -452,6 +448,11 @@ ul, li
 	width: 500px;
 	margin-top: 50px;
 	height: 150px;
+}
+
+#slider
+{
+	margin-right: 360px;
 }
 
 #slidersubmitbutton
