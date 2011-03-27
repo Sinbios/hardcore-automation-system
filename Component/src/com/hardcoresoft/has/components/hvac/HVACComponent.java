@@ -11,7 +11,139 @@ public class HVACComponent extends HASComponent implements IHVACComponent
 	@Override
 	protected void MessageHandler(String msg) throws Exception
 	{
-		// TODO: Parse the message and do something with it
+		if (msg.startsWith("getStatus"))
+		{
+			sendMessage(msg + ":" + getStatus().toString());
+		}
+		else if (msg.startsWith("setDesiredTemperature"))
+		{
+			try
+			{
+				int temp = Integer.parseInt(msg.substring(msg.indexOf("(") + 1, msg.indexOf(")")));
+				sendMessage(msg + ":" + setDesiredTemperature(temp));
+			}
+			catch (Exception ex)
+			{
+				LogException(new Exception(msg + ":Does not contain a valid temperature parameter"));
+				sendMessage(msg + ":Does not contain a valid temperature parameter");
+			}
+		}
+		else if (msg.startsWith("isHeating"))
+		{
+			sendMessage(msg + ":" + isHeating());
+		}
+		else if (msg.startsWith("isAC"))
+		{
+			sendMessage(msg + ":" + isAC());
+		}
+		else if (msg.startsWith("isVentilating"))
+		{
+			sendMessage(msg + ":" + isVentilating());
+		}
+		else if (msg.startsWith("activateVentilation"))
+		{
+			try
+			{
+				int fanSpeed = Integer.parseInt(msg.substring(msg.indexOf("(") + 1, msg.indexOf(")")));
+				sendMessage(msg + ":" + activateVentilation(fanSpeed));
+			}
+			catch (Exception ex)
+			{
+				LogException(new Exception(msg + ":Does not contain a valid fan speed parameter"));
+				sendMessage(msg + ":Does not contain a valid fan speed parameter");
+			}
+		}
+		else if (msg.startsWith("deactivateVentilation"))
+		{
+			sendMessage(msg + ":" + deactivateVentilation());
+		}
+		else if (msg.startsWith("addHeatingUnit"))
+		{
+			try
+			{
+				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
+				addHeatingUnit(name);
+				sendMessage(msg + ":" + true);
+			}
+			catch (Exception ex)
+			{
+				LogException(ex);
+				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
+				sendMessage(msg + ":Does not contain a valid name parameter");
+			}
+		}
+		else if (msg.startsWith("addACUnit"))
+		{
+			try
+			{
+				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
+				addACUnit(name);
+				sendMessage(msg + ":" + true);
+			}
+			catch (Exception ex)
+			{
+				LogException(ex);
+				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
+				sendMessage(msg + ":Does not contain a valid name parameter");
+			}
+		}
+		else if (msg.startsWith("addVentilationUnit"))
+		{
+			try
+			{
+				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
+				addVentilationUnit(name);
+				sendMessage(msg + ":" + true);
+			}
+			catch (Exception ex)
+			{
+				LogException(ex);
+				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
+				sendMessage(msg + ":Does not contain a valid name parameter");
+			}
+		}
+		else if (msg.startsWith("removeHeatingUnit"))
+		{
+			try
+			{
+				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
+				sendMessage(msg + ":" + removeHeatingUnit(name));
+			}
+			catch (Exception ex)
+			{
+				LogException(ex);
+				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
+				sendMessage(msg + ":Does not contain a valid name parameter");
+			}
+		}
+		else if (msg.startsWith("removeACUnit"))
+		{
+			try
+			{
+				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
+				sendMessage(msg + ":" + removeACUnit(name));
+			}
+			catch (Exception ex)
+			{
+				LogException(ex);
+				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
+				sendMessage(msg + ":Does not contain a valid name parameter");
+			}
+		}
+		else if (msg.startsWith("removeVentilationUnit"))
+		{
+			try
+			{
+				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
+				sendMessage(msg + ":" + removeVentilationUnit(name));
+			}
+			catch (Exception ex)
+			{
+				LogException(ex);
+				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
+				sendMessage(msg + ":Does not contain a valid name parameter");
+			}
+		}
 	}
 
 	protected void Initialize()
@@ -76,7 +208,8 @@ public class HVACComponent extends HASComponent implements IHVACComponent
 			try
 			{
 				vent.setFanSpeed(fanSpeed);
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				LogException(ex);
 				success = false;
@@ -93,7 +226,8 @@ public class HVACComponent extends HASComponent implements IHVACComponent
 			try
 			{
 				vent.setFanSpeed(0);
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				LogException(ex);
 				success = false;
