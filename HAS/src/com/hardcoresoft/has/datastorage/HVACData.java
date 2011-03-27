@@ -6,6 +6,7 @@ public class HVACData {
 	private String sIpAddress;
 	private int nPort;
 	private Boolean bConnected;
+	private String sMsgQueueName;
 	private double nCurrentTemperature;
 	private double nDesiredTemperature;
 	private HVACSchedule oSchedule;
@@ -16,10 +17,11 @@ public class HVACData {
 		oSchedule = new HVACSchedule();
 	}
 	
-	public HVACData(String ipAddress, int port, Boolean connected, double currentTemp, double desiredTemp ){
+	public HVACData(String ipAddress, String msgQueueName, int port, Boolean connected, double currentTemp, double desiredTemp ){
 		sIpAddress = ipAddress;
 		nPort = port;
 		bConnected = connected;
+		sMsgQueueName = msgQueueName;
 		nCurrentTemperature = currentTemp;
 		nDesiredTemperature = desiredTemp; 
 		oSchedule = new HVACSchedule(); 
@@ -49,6 +51,14 @@ public class HVACData {
 
 	public void setbConnected(Boolean bConnected) {
 		this.bConnected = bConnected;
+	}
+
+	public String getsMsgQueueName() {
+		return sMsgQueueName;
+	}
+
+	public void setsMsgQueueName(String sMsgQueueName) {
+		this.sMsgQueueName = sMsgQueueName;
 	}
 
 	public double getnCurrentTemperature() {

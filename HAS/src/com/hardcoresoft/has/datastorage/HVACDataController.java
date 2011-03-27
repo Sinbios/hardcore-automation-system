@@ -1,9 +1,7 @@
 package com.hardcoresoft.has.datastorage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -19,8 +17,6 @@ import org.xml.sax.SAXException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.text.ParseException;
-
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -49,14 +45,10 @@ public class HVACDataController {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		
 		try {
-			
 			//Using factory get an instance of document builder
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			
 			//parse using builder to get DOM representation of the XML file
 			oHVACDomRead = db.parse(filepath);
-			
-
 		}catch(ParserConfigurationException pce) {
 			pce.printStackTrace();
 		}catch(SAXException se) {
@@ -71,6 +63,7 @@ public class HVACDataController {
 		Element docEle = oHVACDomRead.getDocumentElement();		
 			
 		oHVACData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
+		oHVACData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
 		oHVACData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
 		oHVACData.setnCurrentTemperature(Utils.getDoubleValue(docEle, "tns:currentTemperature"));
 		oHVACData.setnDesiredTemperature(Utils.getDoubleValue(docEle, "tns:desiredTemperature"));
@@ -149,6 +142,16 @@ public class HVACDataController {
 			Text ipAddrText = oHVACDomWrite.createTextNode(oHVACData.getsIpAddress());
 			ipAddrEle.appendChild(ipAddrText);
 			rootEle.appendChild(ipAddrEle);
+			//Create the port element.
+			Element portEle = oHVACDomWrite.createElement("tns:port");
+			Text portText = oHVACDomWrite.createTextNode(Integer.toString(oHVACData.getnPort()));
+			portEle.appendChild(portText);
+			rootEle.appendChild(portEle);
+			//Create the msgQueue element.
+			Element msgQueueEle = oHVACDomWrite.createElement("tns:msgQueueName");
+			Text msgQueueText = oHVACDomWrite.createTextNode(oHVACData.getsMsgQueueName());
+			msgQueueEle.appendChild(msgQueueText);
+			rootEle.appendChild(msgQueueEle);
 			//Create the current temp element.
 			Element currTempEle = oHVACDomWrite.createElement("tns:currentTemperature");
 			Text currTempText = oHVACDomWrite.createTextNode(Double.toString(oHVACData.getnCurrentTemperature()));
@@ -159,18 +162,13 @@ public class HVACDataController {
 			Text desiredTempText = oHVACDomWrite.createTextNode(Double.toString(oHVACData.getnDesiredTemperature()));
 			desiredTempEle.appendChild(desiredTempText);
 			rootEle.appendChild(desiredTempEle);
-			//Create the port element.
-			Element portEle = oHVACDomWrite.createElement("tns:port");
-			Text portText = oHVACDomWrite.createTextNode(Integer.toString(oHVACData.getnPort()));
-			portEle.appendChild(portText);
-			rootEle.appendChild(portEle);
-			//Generate the schedule aspect using a helper function
-			rootEle.appendChild(createHVACScheduleElement());
 			//Add the status
 			Element statusEle = oHVACDomWrite.createElement("tns:status");
 			Text statusText = oHVACDomWrite.createTextNode(Integer.toString(oHVACData.getoStatus().ordinal()));
 			statusEle.appendChild(statusText);
 			rootEle.appendChild(statusEle);
+			//Generate the schedule aspect using a helper function
+			rootEle.appendChild(createHVACScheduleElement());
 		}
 		catch(Exception e){
 			e.printStackTrace();

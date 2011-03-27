@@ -29,12 +29,13 @@
     <complexType name="hvac">
     	<sequence>
     		<element ref="tns:connected"></element>
-    		<element ref="tns:ipAddress"></element>
-    		<element ref="tns:currentTemperature"></element>
+            <element ref="tns:ipAddress"></element>
+            <element ref="tns:port"></element>
+            <element ref="tns:msgQueueName"></element>
+            <element ref="tns:currentTemperature"></element>
     		<element ref="tns:desiredTemperature"></element>
-    		<element ref="tns:port"></element>
-    		<element ref="tns:schedule"></element>
     		<element ref="tns:status"></element>
+    		<element ref="tns:schedule"></element>
     	</sequence>
     </complexType>
 
@@ -44,4 +45,6 @@
     		<element name="desiredTemperature" type="double" maxOccurs="1" minOccurs="1"></element>
     	</sequence>
     </complexType>
+
+    <element name="msgQueueName" type="string"></element>
 </schema>

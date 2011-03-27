@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/hvac" xmlns:tns="http://www.example.org/hvac" elementFormDefault="qualified">
+
+    <element name="ipAddress" type="string"></element>
+
+    <element name="port" type="int"></element>
+
+    <element name="connected" type="boolean"></element>
+
+
+
+
+    <element name="status" type="int"></element>
+    
+    
+    <element name="schedule" type="tns:lightingSchedule"></element>
+    
+    <complexType name="lightingSchedule">
+    	<sequence>
+    		<element name="action" type="tns:lightingScheduleNode" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+
+    <element name="lighting" type="tns:lighting"></element>
+    
+    <complexType name="lighting">
+    	<sequence>
+    		<element ref="tns:connected"></element>
+    		<element ref="tns:ipAddress"></element>
+    		<element ref="tns:port"></element>
+            <element ref="tns:msgQueueName"></element>
+            <element ref="tns:brightness"></element>
+    		<element ref="tns:colourTemp"></element>
+    		<element ref="tns:operationalStatus"></element>
+    		<element ref="tns:schedule"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="lightingScheduleNode">
+    	<sequence>
+    		<element name="date" type="dateTime" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="status" type="boolean" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="brightness" type="int" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="colourTemp" type="int" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="operationalStatus" type="boolean"></element>
+
+    <element name="brightness" type="int"></element>
+
+    <element name="colourTemp" type="int"></element>
+
+    <element name="msgQueueName" type="string"></element>
+</schema>
