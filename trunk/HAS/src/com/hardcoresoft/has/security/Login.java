@@ -45,18 +45,17 @@ public class Login extends HttpServlet {
 		PrintWriter out = response.getWriter (); 
 		String username = request.getParameter ("username");
 		String password = request.getParameter ("password");
-		String user = request.getParameter ("username");
 		HttpSession session = request.getSession(true); 
 		session.setAttribute("user", username);
 		
-		UserDataNode userNode = DataStorage.getInstance().getoUserData().getoUserData().findUser(username);
+		UserDataNode user = DataStorage.getInstance().getoUserData().getoUserData().findUser(username);
 		
-		if (userNode != null) {
-			if (userNode.validatePassword(password)) {
+		if (user != null) {
+			if (user.validatePassword(password)) {
 				session.setAttribute("user", user); 
 				session.setAttribute("username", username); 
 				// TODO: this needs to redirect to a JSP file that checks session for user info
-				response.sendRedirect("index.html");
+				response.sendRedirect("home.jsp");
 			} else {
 				// TODO: redirect back to login page with username filled in
 				out.println ("<h3>Invalid username/password.</h3>");
