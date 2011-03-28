@@ -5,6 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Function: public class HVACSchedule
+ * Description: Container class for storing HVAC schedule info. 
+ */
 public class HVACSchedule {
 
 	//Global variables
@@ -24,7 +28,12 @@ public class HVACSchedule {
 		return oSchedule;
 	}
 
-	//Adds a new HVACScheduleNode, if it already contains that date/time, false is returned.
+	/**
+	 * Function: public Boolean addScheduledAction(HVACScheduleNode scheduleNode)
+	 * Parameters: HVACSchedule scheduleNode - the HVAC schedule node to be added. 
+	 * Description: Adds a new HVACScheduleNode, if it already contains that 
+	 * date/time, false is returned.
+	 */
 	public Boolean addScheduledAction(HVACScheduleNode scheduleNode){
 		try
 		{
@@ -46,8 +55,12 @@ public class HVACSchedule {
 		return null;
 	}
 	
-	//Removes the node with the provided date and subsequently replaces it with a new node
-	//with new temperature.
+	/**
+	 * Function: public Boolean updateScheduledAction(Date date, double desiredTemp)
+	 * Parameters: Data date - date of the node to be updated. double desiredTemp - new temperature.
+	 * Description: Removes the node with the provided date and subsequently replaces it with a new node
+	 * with new temperature.
+	 */
 	public Boolean updateScheduledAction(Date date, double desiredTemp){
 		try{
 			if(deleteScheduledAction(date) == true){
@@ -64,7 +77,11 @@ public class HVACSchedule {
 		return false;
 	}
 	
-	//Removes a node with the same date/time as provided. 
+	/**
+	 * Function: public Boolean deleteScheduledAction(Date date)
+	 * Parameters: Data date - date of the node to be removed.
+	 * Description: Removes the node with the provided date.
+	 */
 	public Boolean deleteScheduledAction(Date date){
 		try{
 			HVACScheduleNode oCompare = new HVACScheduleNode(date, 0);
@@ -76,7 +93,11 @@ public class HVACSchedule {
 		return false;
 	}
 	
-	//Finds a HVACScheduleNode based on date,  if nothing found, return null.
+	/**
+	 * Function: public HVACScheduleNode findScheduledAction(Date date)
+	 * Parameters: Data date - date of the node to be removed.
+	 * Description: Finds the node with the provided date.
+	 */
 	public HVACScheduleNode findScheduledAction(Date date){
 		try{
 			HVACScheduleNode oCompare = new HVACScheduleNode(date, 0);

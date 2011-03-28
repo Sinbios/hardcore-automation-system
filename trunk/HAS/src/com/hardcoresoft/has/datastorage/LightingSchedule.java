@@ -5,6 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Function: public class LightingSchedule
+ * Description: Container class for storing lighting schedule info. 
+ */
 public class LightingSchedule {
 	
 	//Global variables
@@ -24,8 +28,12 @@ public class LightingSchedule {
 		return oSchedule;
 	}
 
-	//Adds a new LightingScheduleNode, if it already contains that date/time, false is returned.
-	public Boolean addScheduledAction(LightingScheduleNode scheduleNode){
+	/**
+	 * Function: public Boolean addScheduledAction(LightingScheduleNode scheduleNode)
+	 * Parameters: LightingScheduleNode scheduleNode - the Lighting schedule node to be added. 
+	 * Description: Adds a new LightingScheduleNode, if it already contains that 
+	 * date/time, false is returned.
+	 */	public Boolean addScheduledAction(LightingScheduleNode scheduleNode){
 		try
 		{
 			if(oSchedule.contains(scheduleNode))
@@ -46,8 +54,13 @@ public class LightingSchedule {
 		return null;
 	}
 	
-	//Removes the node with the provided date and subsequently replaces it with a new node
-	//with new temperature.
+	/**
+	 * Function: public Boolean updateScheduledAction(Date date, Boolean status, int desiredBrightness, int desiredColourTemp)
+	 * Parameters: Data date - date of the node to be updated. Boolean status - new light status. int desiredBrightness - new desired brightness.
+	 * int desiredColourTemp - new desired colour temp. 
+	 * Description: Removes the node with the provided date and subsequently replaces it with a new node
+	 * with new temperature.
+	 */
 	public Boolean updateScheduledAction(Date date, Boolean status, int desiredBrightness, int desiredColourTemp){
 		try{
 			if(deleteScheduledAction(date) == true){
@@ -64,7 +77,11 @@ public class LightingSchedule {
 		return false;
 	}
 	
-	//Removes a node with the same date/time as provided. 
+	/**
+	 * Function: public Boolean deleteScheduledAction(Date date)
+	 * Parameters: Data date - date of the node to be removed.
+	 * Description: Removes the node with the provided date.
+	 */ 
 	public Boolean deleteScheduledAction(Date date){
 		try{
 			LightingScheduleNode oCompare = new LightingScheduleNode(date,false,0,0);
@@ -76,7 +93,11 @@ public class LightingSchedule {
 		return false;
 	}
 	
-	//Finds a LightingScheduleNode based on date,  if nothing found, return null.
+	/**
+	 * Function: public LightingScheduleNode findScheduledAction(Date date)
+	 * Parameters: Data date - date of the node to be removed.
+	 * Description: Finds the node with the provided date.
+	 */
 	public LightingScheduleNode findScheduledAction(Date date){
 		try{
 			LightingScheduleNode oCompare = new LightingScheduleNode(date,false,0,0);

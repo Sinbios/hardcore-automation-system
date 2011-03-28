@@ -1,6 +1,10 @@
 package com.hardcoresoft.has.datastorage;
 import java.util.Date;
 
+/**
+ * Function: public class HVACScheduleNode
+ * Description: Container class for storing HVAC schedule node info. 
+ */
 public class HVACScheduleNode {
 	
 	//Global variables
