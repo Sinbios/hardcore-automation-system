@@ -26,7 +26,10 @@ import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 
-
+/**
+ * Function: public class HVACDataController
+ * Description: Performs read and writes to the HVAC XML file.
+ */
 public class HVACDataController {
 
 	//Member variables
@@ -50,6 +53,11 @@ public class HVACDataController {
 	}
 	
 	//Private functions
+	/**
+	 * Function: private void parseHVACXmlFile(String filepath)
+	 * Parameters: String filepath: filepath of the XML file.
+	 * Description: Parses the XML file to a DOM file, oHVACDomRead.
+	 */
 	private void parseHVACXmlFile(String filepath){
 		//get the factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -68,6 +76,11 @@ public class HVACDataController {
 		}
 	}
 	
+	/**
+	 * Function: private void parseHVACDocument()
+	 * Parameters: N/A
+	 * Description: Parses the DOM file, oHVACDomRead, into the oHVACData storage class.
+	 */
 	private void parseHVACDocument(){
 		try{
 			//get the root elememt
@@ -98,6 +111,11 @@ public class HVACDataController {
 		}
 	}
 	
+	/**
+	 * Function: HVACScheduleNode getScheduleNode(Element schdEl)
+	 * Parameters: Element schdEl: schedule element.
+	 * Description: Parses the schedule elements and returns a populated HVACScheduleNode.
+	 */
 	private HVACScheduleNode getScheduleNode(Element schdEl){
 
 		DateFormat oDf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -115,10 +133,11 @@ public class HVACDataController {
 	}
 	
 	
-	
 	/**
-	 * Using JAXP in implementation independent manner create a document object
-	 * using which we create a xml tree in memory
+	 * Function: private void createHVACDocument()
+	 * Parameters: N/A
+	 * Description: Using JAXP in implementation independent manner create a document object
+	 * using which we create a xml tree in memory as oHVACDomWrite.
 	 */
 	private void createHVACDocument() {
 
@@ -137,7 +156,9 @@ public class HVACDataController {
 	}
 	
 	/**
-	 * The real workhorse which creates the XML structure
+	 * Function: private void createHVACDOMTree()
+	 * Parameters: N/A
+	 * Description: The real workhorse which creates the XML structure.
 	 */
 	private void createHVACDOMTree(){
 		try{
@@ -190,8 +211,12 @@ public class HVACDataController {
 		}
 	}
 	
-	/*
-	 * Creates the HVAC schedule elements.
+	
+	/**
+	 * Function: private Element createHVACScheduleElement()
+	 * Parameters: N/A
+	 * Description: Returns an Element which is populated with HVAC schedule data. Based on
+	 * the data in oHVACDomWrite.
 	 */
 	private Element createHVACScheduleElement(){
 		try{
@@ -228,10 +253,11 @@ public class HVACDataController {
 		
 	}
 	
-	/*
-	 * This method uses Xerces specific classes
-	 * prints the HVAC XML document to file.
-     */
+	/**
+	 * Function: private void printHVACXML(String filepath)
+	 * Parameters: String filepath: file path of the output XML file.
+	 * Description: Writes a new XML based on oHVACDomWrite data to filepath. 
+	 */
 	private void printHVACXML(String filepath){
 
 		try
@@ -255,7 +281,11 @@ public class HVACDataController {
 		}
 	}
 	
-	//Public functions
+	/**
+	 * Function: public void readHVACData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for reading in HVAC XML data.
+	 */
 	public void readHVACData()
 	{
 		
@@ -263,6 +293,11 @@ public class HVACDataController {
 		parseHVACDocument();
 	}
 	
+	/**
+	 * Function: public void writeHVACData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for writing HVAC XML data.
+	 */
 	public void writeHVACData()
 	{
 		createHVACDocument();
@@ -270,6 +305,11 @@ public class HVACDataController {
 		printHVACXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\hvac.xml");
 	}
 	
+	/**
+	 * Function: public static HVACStatus convertIntToHVACStatus(int value)
+	 * Parameters: int value - integer to convert.
+	 * Description: Converts an integer to an HVACStatus enum. 
+	 */
 	public static HVACStatus convertIntToHVACStatus(int value)
 	{
 		return HVACStatus.class.getEnumConstants()[value];
