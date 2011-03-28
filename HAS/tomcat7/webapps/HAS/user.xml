@@ -19,7 +19,7 @@
         <tns:firstName>Andrei</tns:firstName>
         <tns:lastName>Tulai</tns:lastName>
         <tns:userName>atulai</tns:userName>
-        <tns:password>lol</tns:password>
+        <tns:password>test</tns:password>
         <tns:permission>0</tns:permission>
     </tns:user>
 </tns:users>

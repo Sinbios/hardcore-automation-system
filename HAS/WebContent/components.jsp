@@ -11,18 +11,18 @@
 <%@ include file="login.html" %>
 <% } else { %>
 <%! UserDataNode user = null; %>
-<%! String selected = "home"; %>
+<%! String selected = "components"; %>
 <% user = (UserDataNode) request.getSession().getAttribute("user"); %>
 <html>
 	<head>
-		<title>Home Automation System - Welcome</title>
+		<title>Home Automation System - My Components</title>
 		
 		<!--[if IE]>
             <link rel="stylesheet" type="text/css" href="css/ie.css" />
-    <![endif]-->
-    <!--[if !IE]><!-->
-    	 <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <!--<![endif]-->
+        <![endif]-->
+        <!--[if !IE]><!-->
+            <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <!--<![endif]-->
     
 		<link rel="shortcut icon" href="images/has.ico" />
 		
@@ -41,20 +41,24 @@
         </script>
 		
 	</head>
+
 	<body>
         <div id="wrapper">
             <%@ include file="header.jsp" %>
-
             <div id="maincontainer">
-                <div id="homemessage">
-                    <p>Welcome to your Home Automation System!</p>
-                    <p>Please visit the "My Components" page to begin configuring properties of the various components in your home.</p>
-                    <p>Click "Account Settings" to perform tasks such as changing your HAS password.</p>
-                </div>
+                <table id="simpletable">
+                    <tr>
+                        <td><a href="hvac.html"><img src="images/hvac.png" /></a></td>
+                        <td><a href="security.html"><img src="images/security.png" /></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="lighting.html"><img src="images/lighting.png" /></a></td>
+                        <td></td>
+                    </tr>
+                </table>
             </div>
-        
         </div>
-        <%@ include file="footer.jsp" %>
+    	<%@ include file="footer.jsp" %>
 	</body>
 </html>
 <% } %>
