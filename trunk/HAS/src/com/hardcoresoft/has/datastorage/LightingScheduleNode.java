@@ -59,8 +59,10 @@ public class LightingScheduleNode {
 		StringBuilder result = new StringBuilder();
 	    String NEW_LINE = System.getProperty("line.separator");
 	    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
-	    result.append("Date: " + this.getDate() + " Brightness: " + this.getnBrightness() + NEW_LINE);
-	    result.append("Colour Temp: " + this.getnColourTemp() + NEW_LINE);
+	    result.append("<tns:date>" + this.getDate() + "</tns:date>" + NEW_LINE);
+	    result.append("<tns:status>" + Boolean.toString(this.getbStatus()) + "</tns:status>" + NEW_LINE);
+	    result.append("<tns:brightness>" + Integer.toString(this.nBrightness) + "</tns:brightness>" + NEW_LINE);
+	    result.append("<tns:colourTemp>" + Integer.toString(this.nColourTemp) + "</tns:colourTemp>" + NEW_LINE);
 	    return result.toString();
 	}
 	

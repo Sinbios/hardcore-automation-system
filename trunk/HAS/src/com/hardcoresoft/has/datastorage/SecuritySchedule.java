@@ -106,7 +106,9 @@ public class SecuritySchedule {
 		    ListIterator<SecurityScheduleNode> itr = oSchedule.listIterator();
 		    while(itr.hasNext())
 		    {
+		    	result.append("<tns:action>" + NEW_LINE);
 		    	result.append(itr.next());
+		    	result.append("</tns:action>" + NEW_LINE);
 		    }
 		    return result.toString();
 		}

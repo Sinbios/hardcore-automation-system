@@ -55,5 +55,25 @@ public class UserData {
 		}
 		return null;
 	}
+	//toString for debugging.
+	@Override public String toString() {
+		try{
+			StringBuilder result = new StringBuilder();
+		    String NEW_LINE = System.getProperty("line.separator");
+		    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
+		    ListIterator<UserDataNode> itr = oUsers.listIterator();
+		    while(itr.hasNext())
+		    {
+		    	result.append("<tns:user>" + NEW_LINE);
+		    	result.append(itr.next());
+		    	result.append("</tns:user>" + NEW_LINE);
+		    }
+		    return result.toString();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }

@@ -102,7 +102,11 @@ public class UserDataNode {
 		StringBuilder result = new StringBuilder();
 	    String NEW_LINE = System.getProperty("line.separator");
 	    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
-	    result.append("Username: " + this.sUserName + " First Name: " + this.sFirstName + " Last Name:" + this.sLastName + NEW_LINE);
+	    result.append("<tns:firstName>" + this.sFirstName + "</tns:firstName>" + NEW_LINE);
+	    result.append("<tns:lastName>" + this.sLastName + "</tns:lastName>" + NEW_LINE);
+	    result.append("<tns:userName>" + this.sUserName + "</tns:userName>" + NEW_LINE);
+	    result.append("<tns:password>" + this.sPassword + "</tns:password>" + NEW_LINE);
+	    result.append("<tns:permission>" + this.oUserPermission.ordinal() + "</tns:permission>" + NEW_LINE);
 	    return result.toString();
 	}
 }

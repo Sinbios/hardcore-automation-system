@@ -208,6 +208,14 @@ public class UserDataController {
 		printUserXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\user.xml");
 	}
 	
+	public UserData getoUserData() {
+		return oUserData;
+	}
+
+	public void setoUserData(UserData oUserData) {
+		this.oUserData = oUserData;
+	}
+
 	public static UserPermission convertIntToUserPermission(int value)
 	{
 		return UserPermission.class.getEnumConstants()[value];
