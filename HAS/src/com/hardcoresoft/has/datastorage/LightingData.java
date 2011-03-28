@@ -1,5 +1,9 @@
 package com.hardcoresoft.has.datastorage;
 
+/**
+ * Function: public class LightingData
+ * Description: Wrapper class for lighting data storage.
+ */
 public class LightingData {
 	
 	//Member variables

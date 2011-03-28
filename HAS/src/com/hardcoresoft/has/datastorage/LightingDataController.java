@@ -22,6 +22,10 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
+/**
+ * Function: public class LightingDataController
+ * Description: Performs read and writes to the Lighting XML file.
+ */
 public class LightingDataController {
 	
 	//Member variables
@@ -39,6 +43,12 @@ public class LightingDataController {
 	}
 	
 	//Private functions
+	
+	/**
+	 * Function: private void parseLightingXmlFile(String filepath)
+	 * Parameters: String filepath: filepath of the XML file.
+	 * Description: Parses the XML file to a DOM file, oLightingDomRead.
+	 */
 	private void parseLightingXmlFile(String filepath){
 		//get the factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -57,6 +67,11 @@ public class LightingDataController {
 		}
 	}
 	
+	/**
+	 * Function: private void parseLightingDocument()
+	 * Parameters: N/A
+	 * Description: Parses the DOM file, oLightingDomRead, into the oLightingData storage class.
+	 */
 	private void parseLightingDocument(){
 		try{
 			//get the root elememt
@@ -88,6 +103,11 @@ public class LightingDataController {
 		}
 	}
 	
+	/**
+	 * Function: LightingScheduleNode getScheduleNode(Element schdEl)
+	 * Parameters: Element schdEl: schedule element.
+	 * Description: Parses the schedule elements and returns a populated LightingScheduleNode.
+	 */
 	private LightingScheduleNode getScheduleNode(Element schdEl){
 
 		DateFormat oDf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -107,8 +127,10 @@ public class LightingDataController {
 	
 	
 	/**
-	 * Using JAXP in implementation independent manner create a document object
-	 * using which we create a xml tree in memory
+	 * Function: private void createLightingDocument()
+	 * Parameters: N/A
+	 * Description: Using JAXP in implementation independent manner create a document object
+	 * using which we create a xml tree in memory as oLightingDomWrite.
 	 */
 	private void createLightingDocument() {
 
@@ -127,7 +149,9 @@ public class LightingDataController {
 	}
 	
 	/**
-	 * The real workhorse which creates the XML structure
+	 * Function: private void createLightingDOMTree()
+	 * Parameters: N/A
+	 * Description: The real workhorse which creates the XML structure.
 	 */
 	private void createLightingDOMTree(){
 		try{
@@ -180,8 +204,11 @@ public class LightingDataController {
 		}
 	}
 	
-	/*
-	 * Creates the lighting schedule elements.
+	/**
+	 * Function: private Element createLightingScheduleElement()
+	 * Parameters: N/A
+	 * Description: Returns an Element which is populated with Lighting schedule data. Based on
+	 * the data in oLightingDomWrite.
 	 */
 	private Element createLightingScheduleElement(){
 		try{
@@ -228,10 +255,11 @@ public class LightingDataController {
 		
 	}
 	
-	/*
-	 * This method uses Xerces specific classes
-	 * prints the lighting XML document to file.
-     */
+	/**
+	 * Function: private void printLightingXML(String filepath)
+	 * Parameters: String filepath: file path of the output XML file.
+	 * Description: Writes a new XML based on oLightingDomWrite data to filepath. 
+	 */
 	private void printLightingXML(String filepath){
 
 		try
@@ -256,12 +284,22 @@ public class LightingDataController {
 	}
 	
 	//Public functions
+	/**
+	 * Function: public void readLightingData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for reading in Lighting XML data.
+	 */
 	public void readLightingData()
 	{
 		parseLightingXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\lighting.xml");
 		parseLightingDocument();
 	}
 	
+	/**
+	 * Function: public void writeLightingData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for writing Lighting XML data.
+	 */
 	public void writeLightingData()
 	{
 		createLightingDocument();
