@@ -56,26 +56,31 @@ public class SecurityDataController {
 	}
 	
 	private void parseSecurityDocument(){
-		//get the root elememt
-		Element docEle = oSecurityDomRead.getDocumentElement();		
-			
-		oSecurityData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
-		oSecurityData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
-		oSecurityData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
-		oSecurityData.setnPin(Utils.getIntValue(docEle, "tns:pin"));
-		oSecurityData.setnPort(Utils.getIntValue(docEle, "tns:port"));
-		oSecurityData.setoStatus(convertIntToSecurityStatus(Utils.getIntValue(docEle, "tns:status")));
-		//get a nodelist of schedules
-		NodeList nl = docEle.getElementsByTagName("tns:action");
-		if(nl != null && nl.getLength() > 0) {
-			for(int i = 0 ; i < nl.getLength();i++) {
-				//get the element
-				Element el = (Element)nl.item(i);
-				SecuritySchedule oTempSchedule = oSecurityData.getoSchedule();
-				//Add to schedule
-				oTempSchedule.addScheduledAction(getScheduleNode(el));
-				oSecurityData.setoSchedule(oTempSchedule);
+		try{
+			//get the root elememt
+			Element docEle = oSecurityDomRead.getDocumentElement();		
+				
+			oSecurityData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
+			oSecurityData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
+			oSecurityData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
+			oSecurityData.setnPin(Utils.getIntValue(docEle, "tns:pin"));
+			oSecurityData.setnPort(Utils.getIntValue(docEle, "tns:port"));
+			oSecurityData.setoStatus(convertIntToSecurityStatus(Utils.getIntValue(docEle, "tns:status")));
+			//get a nodelist of schedules
+			NodeList nl = docEle.getElementsByTagName("tns:action");
+			if(nl != null && nl.getLength() > 0) {
+				for(int i = 0 ; i < nl.getLength();i++) {
+					//get the element
+					Element el = (Element)nl.item(i);
+					SecuritySchedule oTempSchedule = oSecurityData.getoSchedule();
+					//Add to schedule
+					oTempSchedule.addScheduledAction(getScheduleNode(el));
+					oSecurityData.setoSchedule(oTempSchedule);
+				}
 			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 	
@@ -245,9 +250,9 @@ public class SecurityDataController {
 		printSecurityXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\security_list.xml");
 	}
 	
-	public static SecurityStatusEnum convertIntToSecurityStatus(int value)
+	public static SecurityMode convertIntToSecurityStatus(int value)
 	{
-		return SecurityStatusEnum.class.getEnumConstants()[value];
+		return SecurityMode.class.getEnumConstants()[value];
 	}
 
 	

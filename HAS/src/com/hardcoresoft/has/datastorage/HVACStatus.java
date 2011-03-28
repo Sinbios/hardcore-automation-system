@@ -1,6 +1,6 @@
 package com.hardcoresoft.has.datastorage;
 
-public enum HVACStatusEnum {
+public enum HVACStatus {
 OFF, HEATON, ACCON,FANON
 }
 

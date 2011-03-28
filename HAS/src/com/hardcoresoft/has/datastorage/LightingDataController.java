@@ -56,28 +56,33 @@ public class LightingDataController {
 	}
 	
 	private void parseLightingDocument(){
-		//get the root elememt
-		Element docEle = oLightingDomRead.getDocumentElement();		
+		try{
+			//get the root elememt
+			Element docEle = oLightingDomRead.getDocumentElement();		
+				
+			oLightingData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
+			oLightingData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
+			oLightingData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
+			oLightingData.setnPort(Utils.getIntValue(docEle, "tns:port"));
+			oLightingData.setnBrightness(Utils.getIntValue(docEle, "tns:brightness"));
+			oLightingData.setnColourTemp(Utils.getIntValue(docEle,"tns:colourTemp"));
+			oLightingData.setbOperationalStatus(Boolean.parseBoolean(Utils.getTextValue(docEle, "tns:status")));
 			
-		oLightingData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
-		oLightingData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
-		oLightingData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
-		oLightingData.setnPort(Utils.getIntValue(docEle, "tns:port"));
-		oLightingData.setnBrightness(Utils.getIntValue(docEle, "tns:brightness"));
-		oLightingData.setnColourTemp(Utils.getIntValue(docEle,"tns:colourTemp"));
-		oLightingData.setbOperationalStatus(Boolean.parseBoolean(Utils.getTextValue(docEle, "tns:status")));
-		
-		//get a nodelist of schedules
-		NodeList nl = docEle.getElementsByTagName("tns:action");
-		if(nl != null && nl.getLength() > 0) {
-			for(int i = 0 ; i < nl.getLength();i++) {
-				//get the element
-				Element el = (Element)nl.item(i);
-				LightingSchedule oTempSchedule = oLightingData.getoSchedule();
-				//Add to schedule
-				oTempSchedule.addScheduledAction(getScheduleNode(el));
-				oLightingData.setoSchedule(oTempSchedule);
+			//get a nodelist of schedules
+			NodeList nl = docEle.getElementsByTagName("tns:action");
+			if(nl != null && nl.getLength() > 0) {
+				for(int i = 0 ; i < nl.getLength();i++) {
+					//get the element
+					Element el = (Element)nl.item(i);
+					LightingSchedule oTempSchedule = oLightingData.getoSchedule();
+					//Add to schedule
+					oTempSchedule.addScheduledAction(getScheduleNode(el));
+					oLightingData.setoSchedule(oTempSchedule);
+				}
 			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	

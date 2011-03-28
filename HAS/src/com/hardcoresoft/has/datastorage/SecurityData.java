@@ -8,7 +8,7 @@ public class SecurityData {
 	private Boolean bConnected;
 	private String sMsgQueueName;
 	private int nPin;
-	private SecurityStatusEnum oStatus;
+	private SecurityMode oStatus;
 	private SecuritySchedule oSchedule;
 	
 	//Constructors
@@ -56,11 +56,11 @@ public class SecurityData {
 		this.nPin = nPin;
 	}
 
-	public SecurityStatusEnum getoStatus() {
+	public SecurityMode getoStatus() {
 		return oStatus;
 	}
 
-	public void setoStatus(SecurityStatusEnum oStatus) {
+	public void setoStatus(SecurityMode oStatus) {
 		this.oStatus = oStatus;
 	}
 
