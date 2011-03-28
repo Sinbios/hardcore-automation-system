@@ -10,7 +10,7 @@ public class HVACData {
 	private double nCurrentTemperature;
 	private double nDesiredTemperature;
 	private HVACSchedule oSchedule;
-	private HVACStatus oStatus;
+	private HVACStatusEnum oStatus;
 	
 	//Constructors
 	public HVACData(){
@@ -89,11 +89,11 @@ public class HVACData {
 		return sIpAddress;
 	}
 
-	public HVACStatus getoStatus() {
+	public HVACStatusEnum getoStatus() {
 		return oStatus;
 	}
 
-	public void setoStatus(HVACStatus oStatus) {
+	public void setoStatus(HVACStatusEnum oStatus) {
 		this.oStatus = oStatus;
 	}
 	
