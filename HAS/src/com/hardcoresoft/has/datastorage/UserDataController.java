@@ -3,9 +3,6 @@ package com.hardcoresoft.has.datastorage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -22,6 +19,10 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
+/**
+ * Function: public class UserDataController
+ * Description: Performs read and writes to the User XML file.
+ */
 public class UserDataController {
 	
 	//Member variables
@@ -37,6 +38,11 @@ public class UserDataController {
 	}
 	
 	//Private functions
+	/**
+	 * Function: private void parseUserXmlFile(String filepath)
+	 * Parameters: String filepath: filepath of the XML file.
+	 * Description: Parses the XML file to a DOM file, oUserDomRead.
+	 */
 	private void parseUserXmlFile(String filepath){
 		//get the factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -55,6 +61,11 @@ public class UserDataController {
 		}
 	}
 	
+	/**
+	 * Function: private void parseUserDocument()
+	 * Parameters: N/A
+	 * Description: Parses the DOM file, oUserDomRead, into the oUserData storage class.
+	 */
 	private void parseUserDocument(){
 		try{
 			//get the root elememt
@@ -77,6 +88,11 @@ public class UserDataController {
 		}
 	}
 	
+	/**
+	 * Function: private UserDataNode getUserNode(Element schdEl)
+	 * Parameters: Element schdEl: User element.
+	 * Description: Parses the user element and returns a populated UserDataNode.
+	 */
 	private UserDataNode getUserNode(Element schdEl){
 		try
 		{
@@ -94,8 +110,10 @@ public class UserDataController {
 	
 	
 	/**
-	 * Using JAXP in implementation independent manner create a document object
-	 * using which we create a xml tree in memory
+	 * Function: private void createSecurityDocument()
+	 * Parameters: N/A
+	 * Description: Using JAXP in implementation independent manner create a document object
+	 * using which we create a xml tree in memory as oUserDomWrite.
 	 */
 	private void createUserDocument() {
 
@@ -114,7 +132,9 @@ public class UserDataController {
 	}
 	
 	/**
-	 * The real workhorse which creates the XML structure
+	 * Function: private void createUserDOMTree()
+	 * Parameters: N/A
+	 * Description: The real workhorse which creates the XML structure.
 	 */
 	private void createUserDOMTree(){
 		try{
@@ -167,10 +187,11 @@ public class UserDataController {
 		}
 	}
 	
-	/*
-	 * This method uses Xerces specific classes
-	 * prints the user XML document to file.
-     */
+	/**
+	 * Function: private void printUserXML(String filepath)
+	 * Parameters: String filepath: file path of the output XML file.
+	 * Description: Writes a new XML based on oUserDomWrite data to filepath. 
+	 */
 	private void printUserXML(String filepath){
 
 		try
@@ -195,12 +216,22 @@ public class UserDataController {
 	}
 	
 	//Public functions
+	/**
+	 * Function: public void readUserData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for reading in user XML data.
+	 */
 	public void readUserData()
 	{
 		parseUserXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\user.xml");
 		parseUserDocument();
 	}
 	
+	/**
+	 * Function: public void writeUserData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for writing user XML data.
+	 */
 	public void writeUserData()
 	{
 		createUserDocument();
@@ -216,6 +247,11 @@ public class UserDataController {
 		this.oUserData = oUserData;
 	}
 
+	/**
+	 * Function: public static UserPermission convertIntToUserPermission(int value)
+	 * Parameters: int value - integer to convert.
+	 * Description: Converts an integer to an UserPermission enum. 
+	 */
 	public static UserPermission convertIntToUserPermission(int value)
 	{
 		return UserPermission.class.getEnumConstants()[value];

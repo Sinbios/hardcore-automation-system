@@ -4,6 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Function: public class UserData
+ * Description: Container class for storing user data. 
+ */
 public class UserData {
 
 	//Global variables
@@ -20,6 +24,12 @@ public class UserData {
 	}
 	
 	//Public methods
+	/**
+	 * Function: public Boolean addNewUser(UserDataNode user)
+	 * Parameters: UserDataNode user - node of the user which needs to be added.
+	 * Description: Adds a new user data node. Returns false if that user already exists, based
+	 * on username. 
+	 */
 	public Boolean addNewUser(UserDataNode user){
 		try{
 			if(findUser(user.getsUserName()) != null){
@@ -36,6 +46,12 @@ public class UserData {
 		return false;
 	}
 	
+	/**
+	 * Function: public UserDataNode findUser(String username)
+	 * Parameters: String username - username of the user to be found.
+	 * Description: Returns the UserDataNode of a user based on username. If not found, it 
+	 * returns NULL. 
+	 */
 	public UserDataNode findUser(String username){
 		try{
 			UserDataNode oCompare = new UserDataNode(username);
@@ -55,6 +71,7 @@ public class UserData {
 		}
 		return null;
 	}
+	
 	//toString for debugging.
 	@Override public String toString() {
 		try{

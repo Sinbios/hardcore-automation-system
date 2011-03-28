@@ -6,6 +6,11 @@ import org.w3c.dom.NodeList;
 public class Utils {
 	
 	//Public static functions
+	/**
+	 * Function: public static String getTextValue(Element ele, String tagName)
+	 * Parameters: Element ele - element to analyze. String tagName - tag to extract..
+	 * Description: Returns a string of the value stored in a tag. 
+	 */
 	public static String getTextValue(Element ele, String tagName) {
 		String textVal = null;
 		try
@@ -24,6 +29,11 @@ public class Utils {
 		return null;
 	}
 
+	/**
+	 * Function: public static int getIntValue(Element ele, String tagName)
+	 * Parameters: Element ele - element to analyze. String tagName - tag to extract..
+	 * Description: Returns a integer of the value stored in a tag. 
+	 */
 	public static int getIntValue(Element ele, String tagName) {
 		try
 		{
@@ -36,6 +46,11 @@ public class Utils {
 		return 0;
 	}
 
+	/**
+	 * Function: public static double getDoubleValue(Element ele, String tagName)
+	 * Parameters: Element ele - element to analyze. String tagName - tag to extract..
+	 * Description: Returns a double of the value stored in a tag. 
+	 */
 	public static double getDoubleValue(Element ele, String tagName){
 		try
 		{
