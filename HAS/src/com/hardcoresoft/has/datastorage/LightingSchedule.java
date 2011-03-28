@@ -33,7 +33,8 @@ public class LightingSchedule {
 	 * Parameters: LightingScheduleNode scheduleNode - the Lighting schedule node to be added. 
 	 * Description: Adds a new LightingScheduleNode, if it already contains that 
 	 * date/time, false is returned.
-	 */	public Boolean addScheduledAction(LightingScheduleNode scheduleNode){
+	 */	
+	public Boolean addScheduledAction(LightingScheduleNode scheduleNode){
 		try
 		{
 			if(oSchedule.contains(scheduleNode))
@@ -59,7 +60,7 @@ public class LightingSchedule {
 	 * Parameters: Data date - date of the node to be updated. Boolean status - new light status. int desiredBrightness - new desired brightness.
 	 * int desiredColourTemp - new desired colour temp. 
 	 * Description: Removes the node with the provided date and subsequently replaces it with a new node
-	 * with new temperature.
+	 * with new brightness, status, and colour temp.
 	 */
 	public Boolean updateScheduledAction(Date date, Boolean status, int desiredBrightness, int desiredColourTemp){
 		try{
@@ -96,7 +97,7 @@ public class LightingSchedule {
 	/**
 	 * Function: public LightingScheduleNode findScheduledAction(Date date)
 	 * Parameters: Data date - date of the node to be removed.
-	 * Description: Finds the node with the provided date.
+	 * Description: Finds the node with the provided date. Returns NULL if not found.
 	 */
 	public LightingScheduleNode findScheduledAction(Date date){
 		try{

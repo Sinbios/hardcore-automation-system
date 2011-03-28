@@ -2,7 +2,10 @@ package com.hardcoresoft.has.datastorage;
 
 import java.util.Date;
 
-
+/**
+ * Function: public class LightingScheduleNode
+ * Description: Container class for storing Lighting schedule node info. 
+ */
 public class LightingScheduleNode {
 	
 	//Global variables

@@ -22,6 +22,10 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
+/**
+ * Function: public class SecurityDataController
+ * Description: Performs read and writes to the Security XML file.
+ */
 public class SecurityDataController {
 	
 	//Member variables
@@ -37,6 +41,11 @@ public class SecurityDataController {
 	}
 	
 	//Private functions
+	/**
+	 * Function: private void parseSecurityXmlFile(String filepath)
+	 * Parameters: String filepath: filepath of the XML file.
+	 * Description: Parses the XML file to a DOM file, oSecurityDomRead.
+	 */
 	private void parseSecurityXmlFile(String filepath){
 		//get the factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -55,6 +64,11 @@ public class SecurityDataController {
 		}
 	}
 	
+	/**
+	 * Function: private void parseSecurityDocument()
+	 * Parameters: N/A
+	 * Description: Parses the DOM file, oSecurityDom, into the oSecurityData storage class.
+	 */
 	private void parseSecurityDocument(){
 		try{
 			//get the root elememt
@@ -84,6 +98,11 @@ public class SecurityDataController {
 		}
 	}
 	
+	/**
+	 * Function: SecurityScheduleNode getScheduleNode(Element schdEl)
+	 * Parameters: Element schdEl: schedule element.
+	 * Description: Parses the schedule elements and returns a populated SecurityScheduleNode.
+	 */
 	private SecurityScheduleNode getScheduleNode(Element schdEl){
 
 		DateFormat oDf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -103,8 +122,10 @@ public class SecurityDataController {
 	
 	
 	/**
-	 * Using JAXP in implementation independent manner create a document object
-	 * using which we create a xml tree in memory
+	 * Function: private void createSecurityDocument()
+	 * Parameters: N/A
+	 * Description: Using JAXP in implementation independent manner create a document object
+	 * using which we create a xml tree in memory as oSecurityDomWrite.
 	 */
 	private void createSecurityDocument() {
 
@@ -123,7 +144,9 @@ public class SecurityDataController {
 	}
 	
 	/**
-	 * The real workhorse which creates the XML structure
+	 * Function: private void createSecurityDOMTree()
+	 * Parameters: N/A
+	 * Description: The real workhorse which creates the XML structure.
 	 */
 	private void createSecurityDOMTree(){
 		try{
@@ -171,8 +194,11 @@ public class SecurityDataController {
 		}
 	}
 	
-	/*
-	 * Creates the security schedule elements.
+	/**
+	 * Function: private Element createSecurityScheduleElement()
+	 * Parameters: N/A
+	 * Description: Returns an Element which is populated with Security schedule data. Based on
+	 * the data in oSecurityDomWrite.
 	 */
 	private Element createSecurityScheduleElement(){
 		try{
@@ -209,10 +235,11 @@ public class SecurityDataController {
 		
 	}
 	
-	/*
-	 * This method uses Xerces specific classes
-	 * prints the Security XML document to file.
-     */
+	/**
+	 * Function: private void printSecurityXML(String filepath)
+	 * Parameters: String filepath: file path of the output XML file.
+	 * Description: Writes a new XML based on oSecurityDomWrite data to filepath. 
+	 */
 	private void printSecurityXML(String filepath){
 
 		try
@@ -237,12 +264,22 @@ public class SecurityDataController {
 	}
 	
 	//Public functions
+	/**
+	 * Function: public void readSecurityData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for reading in security XML data.
+	 */
 	public void readSecurityData()
 	{
 		parseSecurityXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\security.xml");
 		parseSecurityDocument();
 	}
 	
+	/**
+	 * Function: public void writeSecurityData()
+	 * Parameters: N/A.
+	 * Description: Wrapper function for writing Security XML data.
+	 */
 	public void writeSecurityData()
 	{
 		createSecurityDocument();
@@ -258,6 +295,11 @@ public class SecurityDataController {
 		this.oSecurityData = oSecurityData;
 	}
 
+	/**
+	 * Function: public static SecurityMode convertIntToSecurityStatus(int value))
+	 * Parameters: int value - integer to convert.
+	 * Description: Converts an integer to an SecurityMode enum. 
+	 */
 	public static SecurityMode convertIntToSecurityStatus(int value)
 	{
 		return SecurityMode.class.getEnumConstants()[value];
