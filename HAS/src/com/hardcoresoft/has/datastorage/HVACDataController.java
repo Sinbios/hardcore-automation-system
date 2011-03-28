@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.eclipse.jdt.internal.compiler.batch.FileSystem;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -19,6 +20,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.io.File;
 import java.io.FileOutputStream;
+
 
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
@@ -248,7 +250,8 @@ public class HVACDataController {
 	//Public functions
 	public void readHVACData()
 	{
-		parseHVACXmlFile("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\hvac.xml");
+		
+		parseHVACXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\hvac.xml");
 		parseHVACDocument();
 	}
 	
@@ -256,7 +259,7 @@ public class HVACDataController {
 	{
 		createHVACDocument();
 		createHVACDOMTree();
-		printHVACXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\hvac_test.xml");
+		printHVACXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\hvac.xml");
 	}
 	
 	public static HVACStatus convertIntToHVACStatus(int value)

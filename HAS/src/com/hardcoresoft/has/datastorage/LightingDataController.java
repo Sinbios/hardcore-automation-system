@@ -256,7 +256,7 @@ public class LightingDataController {
 	//Public functions
 	public void readLightingData()
 	{
-		parseLightingXmlFile("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\lighting.xml");
+		parseLightingXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\lighting.xml");
 		parseLightingDocument();
 	}
 	
@@ -264,7 +264,7 @@ public class LightingDataController {
 	{
 		createLightingDocument();
 		createLightingDOMTree();
-		printLightingXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\lighting_test.xml");
+		printLightingXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\lighting.xml");
 	}
 
 }

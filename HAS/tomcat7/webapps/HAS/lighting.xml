@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:lighting xmlns:tns="http://www.example.org/lighting"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/lighting lighting.xsd ">
+    <tns:connected>true</tns:connected>
+    <tns:ipAddress>192.168.0.1</tns:ipAddress>
+    <tns:port>21</tns:port>
+    <tns:msgQueueName>msgQueueName</tns:msgQueueName>
+    <tns:brightness>40</tns:brightness>
+    <tns:colourTemp>2451</tns:colourTemp>
+    <tns:status>true</tns:status>
+    <tns:schedule>
+        <tns:action>
+            <tns:date>2001-12-31T12:00:00</tns:date>
+            <tns:status>true</tns:status>
+            <tns:brightness>53</tns:brightness>
+            <tns:colourTemp>32</tns:colourTemp>
+        </tns:action>
+        <tns:action>
+            <tns:date>2011-12-31T12:00:00</tns:date>
+            <tns:status>true</tns:status>
+            <tns:brightness>23</tns:brightness>
+            <tns:colourTemp>3212</tns:colourTemp>
+        </tns:action>
+    </tns:schedule>
+</tns:lighting>
