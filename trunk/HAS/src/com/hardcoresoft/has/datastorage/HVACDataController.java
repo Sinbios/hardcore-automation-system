@@ -301,7 +301,7 @@ public class HVACDataController {
 	{
 		createHVACDocument();
 		createHVACDOMTree();
-		printHVACXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\hvac.xml");
+		printHVACXML(System.getProperty("catalina.home") + "/webapps/HAS/hvac.xml");
 	}
 	
 	/**
