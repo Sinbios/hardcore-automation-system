@@ -1,6 +1,17 @@
+<%@ page language="java" %>
+<%@ page import="com.hardcoresoft.has.security.UserSecurity" %>
+<%@ page import="com.hardcoresoft.has.datastorage.UserPermission" %>
+<%@ page import="com.hardcoresoft.has.datastorage.UserDataNode" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<% 
+	boolean isLoggedIn = UserSecurity.authenticationCheck(request);
+	if (!isLoggedIn) {
+%>
+<%@ include file="login.html" %>
+<% } else { %>
+<%! UserDataNode user = null; %>
+<% user = (UserDataNode) request.getSession().getAttribute("user"); %>
 <html>
 	<head>
 		<title>Home Automation System - Welcome</title>
@@ -29,7 +40,6 @@
         </script>
 		
 	</head>
-
 	<body>
         <div id="wrapper">
             <div id="headerwrapper">
@@ -40,7 +50,7 @@
                 <div id="topnavwrapper">
        
                     <div id="welcomebar">
-                        <p>Welcome, &lt;userName&gt;!</p>
+                        <p>Welcome, <%=user.getsFirstName() %>!</p>
                     </div>
                 </div>
             </div>
@@ -75,3 +85,4 @@
     
 	</body>
 </html>
+<% } %>
