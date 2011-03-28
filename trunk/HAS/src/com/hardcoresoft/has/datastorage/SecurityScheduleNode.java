@@ -7,10 +7,10 @@ public class SecurityScheduleNode {
 //Global variables
 	
 	private Date oDate;
-	private SecurityStatusEnum oSecurityStatus;
+	private SecurityMode oSecurityStatus;
 	
 	//Constructors
-	public SecurityScheduleNode(Date date, SecurityStatusEnum securitystatus) {
+	public SecurityScheduleNode(Date date, SecurityMode securitystatus) {
 		oDate = date;
 		oSecurityStatus = securitystatus;
 	}
@@ -21,7 +21,7 @@ public class SecurityScheduleNode {
 		return oDate;
 	}
 	
-	public SecurityStatusEnum getSecurityStatus(){
+	public SecurityMode getSecurityStatus(){
 		return oSecurityStatus;
 	}
 	

@@ -1,5 +1,5 @@
 package com.hardcoresoft.has.datastorage;
 
-public enum SecurityStatusEnum {
+public enum SecurityMode {
 OFF,ARMED,ALARMON
 }

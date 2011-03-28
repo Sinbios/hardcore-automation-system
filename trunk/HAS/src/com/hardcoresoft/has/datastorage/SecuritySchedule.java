@@ -48,7 +48,7 @@ public class SecuritySchedule {
 	
 	//Removes the node with the provided date and subsequently replaces it with a new node
 	//with new temperature.
-	public Boolean updateScheduledAction(Date date, SecurityStatusEnum mode){
+	public Boolean updateScheduledAction(Date date, SecurityMode mode){
 		try{
 			if(deleteScheduledAction(date) == true){
 				SecurityScheduleNode oNewNode = new SecurityScheduleNode(date, mode);
@@ -116,9 +116,9 @@ public class SecuritySchedule {
 		return null;
 	}
 	
-	public static SecurityStatusEnum convertIntToSecurityStatus(int value)
+	public static SecurityMode convertIntToSecurityStatus(int value)
 	{
-		return SecurityStatusEnum.class.getEnumConstants()[value];
+		return SecurityMode.class.getEnumConstants()[value];
 	}
 
 }

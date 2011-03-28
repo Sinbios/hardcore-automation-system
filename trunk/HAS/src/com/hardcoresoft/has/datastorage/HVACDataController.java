@@ -59,27 +59,32 @@ public class HVACDataController {
 	}
 	
 	private void parseHVACDocument(){
-		//get the root elememt
-		Element docEle = oHVACDomRead.getDocumentElement();		
-			
-		oHVACData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
-		oHVACData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
-		oHVACData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
-		oHVACData.setnCurrentTemperature(Utils.getDoubleValue(docEle, "tns:currentTemperature"));
-		oHVACData.setnDesiredTemperature(Utils.getDoubleValue(docEle, "tns:desiredTemperature"));
-		oHVACData.setnPort(Utils.getIntValue(docEle, "tns:port"));
-		oHVACData.setoStatus(convertIntToHVACStatus(Utils.getIntValue(docEle, "tns:status")));
-		//get a nodelist of schedules
-		NodeList nl = docEle.getElementsByTagName("tns:action");
-		if(nl != null && nl.getLength() > 0) {
-			for(int i = 0 ; i < nl.getLength();i++) {
-				//get the element
-				Element el = (Element)nl.item(i);
-				HVACSchedule oTempSchedule = oHVACData.getoSchedule();
-				//Add to schedule
-				oTempSchedule.addScheduledAction(getScheduleNode(el));
-				oHVACData.setoSchedule(oTempSchedule);
+		try{
+			//get the root elememt
+			Element docEle = oHVACDomRead.getDocumentElement();		
+				
+			oHVACData.setbConnected(Boolean.parseBoolean(Utils.getTextValue(docEle,"tns:connected")));
+			oHVACData.setsMsgQueueName(Utils.getTextValue(docEle,"tns:msgQueueName"));
+			oHVACData.setsIpAddress(Utils.getTextValue(docEle,"tns:ipAddress"));
+			oHVACData.setnCurrentTemperature(Utils.getDoubleValue(docEle, "tns:currentTemperature"));
+			oHVACData.setnDesiredTemperature(Utils.getDoubleValue(docEle, "tns:desiredTemperature"));
+			oHVACData.setnPort(Utils.getIntValue(docEle, "tns:port"));
+			oHVACData.setoStatus(convertIntToHVACStatus(Utils.getIntValue(docEle, "tns:status")));
+			//get a nodelist of schedules
+			NodeList nl = docEle.getElementsByTagName("tns:action");
+			if(nl != null && nl.getLength() > 0) {
+				for(int i = 0 ; i < nl.getLength();i++) {
+					//get the element
+					Element el = (Element)nl.item(i);
+					HVACSchedule oTempSchedule = oHVACData.getoSchedule();
+					//Add to schedule
+					oTempSchedule.addScheduledAction(getScheduleNode(el));
+					oHVACData.setoSchedule(oTempSchedule);
+				}
 			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	
@@ -254,8 +259,8 @@ public class HVACDataController {
 		printHVACXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\hvac_test.xml");
 	}
 	
-	public static HVACStatusEnum convertIntToHVACStatus(int value)
+	public static HVACStatus convertIntToHVACStatus(int value)
 	{
-		return HVACStatusEnum.class.getEnumConstants()[value];
+		return HVACStatus.class.getEnumConstants()[value];
 	}
 }
