@@ -25,6 +25,7 @@
 		
 		<script type="text/javascript" charset="utf-8">
             $(document).ready(function(){
+            $("#amount").text( "0%");
                 $('#submit').hover(
                     function(){ // On mouseover, swap the signout.png image
                         $(this).attr({ src : 'images/signout-hover.png'});
@@ -35,26 +36,29 @@
                 );
             });
         </script>
-        
-        <style>
-			#demo-frame > div.demo { padding: 10px !important; };
-		</style>
-		
 		<script>
 		$(function() {
 			$( "#slider" ).slider({
 				range: "min",
 				min: 0,
 				max: 100,
-				value: 60,
+				value: 0,
 				slide: function( event, ui ) {
 					$( "#amount" ).val( ui.value );
+					$("#amount").text( ui.value+"%" );
 				}
 			});
-			$( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 		});
 		</script>
-        
+		
+		
+		<style>	
+         #slider{width:250px; position:absolute; left:55px; top:65px;}
+         #brightnesscontainer{position:relative;height:150px;}
+         #amount{position:absolute; right:12px; top:26px;}
+         #slidersubmitbutton input{position:absolute;bottom:20px;right:20px;}
+		</style>
+		
 		
 	</head>
 
@@ -97,14 +101,10 @@
                 </div>
             				
                 <div class="brightnessfield">
-					<div id="brightnesscontainer">
-						<p>
-							<label for="amount">Desired Brightness Level:</label>
-							<input type="text" id="amount" />%
-						</p>
-
-						<div id="slider" style="width:300px;"></div>
-						
+					    <div id="brightnesscontainer">
+						<label for="amount">Desired Brightness Level:</label>
+                  <div id="amount"></div>
+						<div id="slider"></div>
 						<div id="slidersubmitbutton">
 							<form action="j_security_check" method="POST" accept-charset="UTF-8"> 
 								<ul>
@@ -114,12 +114,11 @@
 								</ul>
 							</form>
 						</div>
-					</div>
-                </div>
+
             </div>
         
         </div>
-        
+        </div>
         <div id="footer">
             <p>Copyright &copy;2011 | Home Automation System&#0153; by Hardcoresoft | All Rights Reserved</p>
         </div>

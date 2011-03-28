@@ -347,12 +347,9 @@ ul, li
 {
 	border: 0;
 	color:#009933;
-	font-family: Verdana; 
-	font-size: 10pt; 
+	font-family: Verdana;
+	font-size:32px;
 	font-weight:bold;
-	width: 30px;
-	margin-top: 8px;
-	margin-left: 150px;
 }
 
 #slider
@@ -435,34 +432,94 @@ ul, li
     width: 60px;
 }
 
+#rgbwrapper
+{
+	width: 600px;
+	height: 250px;
+	border: 1px solid #ccc;
+}
+
 #sliderdescription
 {
 	float: left;
-	margin-left: 150px;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-bottom: 15px;
 }
 
 #slidercontainer
 {
-	text-align: center;
-	margin: 0 auto;
-	width: 500px;
-	margin-top: 50px;
+	width: 515px;
 	height: 150px;
-}
-
-#slider
-{
-	margin-right: 360px;
+	float: right;
+	margin-right: 45px;
 }
 
 #slidersubmitbutton
 {
+	padding-top: 10px;
 	padding-bottom: 20px;
+	float: right;
+	padding-right: 58px;
+}
+
+#slider
+{
+	width:300px;
+	margin-right: 360px;
+	margin-top: 35px;
+	margin-left: 115px;
 }
 
 #slidersubmitbutton input
 {
 	width: 60px;
+}
+
+#red
+{
+	border: 2px solid #EF2929;
+}
+
+#red .ui-slider-handle
+{
+	border: 2px solid #EF2929;
+}
+
+#green
+{
+	border: 2px solid #8AE234;;
+}
+
+#green .ui-slider-handle
+{
+	border: 2px solid #8AE234;;
+}
+
+#blue
+{
+	border: 2px solid #729FCF;
+}
+
+#blue .ui-slider-handle
+{
+	border: 2px solid #729FCF;
+}
+
+
+#slider .ui-widget-header
+{
+	background: #009933 repeat-x 50% 50%;
+}
+
+#slider .ui-state-default, .ui-widget-content .ui-state-default
+{
+	border: 2px solid #009933;
+}
+
+#slider
+{
+	border: 2px solid #009933;
 }
 
 #footer

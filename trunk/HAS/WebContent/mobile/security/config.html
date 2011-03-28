@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>Home Automation System - Security Configuration</title>
+		<link rel="stylesheet" type="text/css" href="../css/mstyle.css" />
+		<meta name="viewport" content="width=320" />
+		<script src="../../javascript/jquery-1.5.1.js"></script>
+		 <script type="text/javascript">
+
+         function validate(oldpin,newpin,verifypin)
+         {
+         var pininthesystem = "111";
+          if (verifypin==newpin && oldpin==pininthesystem)
+          {
+            load('../security.html');
+          }
+          else
+          {
+           $('#starting').text('Incorrect PIN');
+           pin.j_pin.disabled=true;
+           pin.j_new_pin.disabled=true;
+           pin.j_pin_confirm.disabled=true;
+           pin.j_pin.value="";
+           pin.j_new_pin.value="";
+           pin.j_pin_confirm.value="";
+            setTimeout ( "fadeawaylol()", 2500 ); 
+                      
+         
+          }
+         }
+         function fadeawaylol()
+         { 
+         $('#starting').fadeOut('slow', function() {});
+         $('#starting').text('');
+                    pin.j_pin.disabled=false;
+           pin.j_new_pin.disabled=false;
+           pin.j_pin_confirm.disabled=false;
+         $('#starting').fadeIn('slow', function() {});
+         }
+         function load(url)
+         {
+          location.href=url;
+         }
+         </script>
+         <style>
+            #starting{
+            font-size:30px;
+            color:red;
+            }
+            #status{
+            margin-bottom:20px;
+            }
+         </style>
+	</head>
+	<body>
+      <div class="mwrapper">
+         <div class="mtopbar">
+            <a href="../home.html"><img src="../img/mtopbar.png" ></a>
+         </div>
+         <div class="mcontent">
+                <div id="status">
+                    <p>To change your 4-digit PIN, enter your credentials:</p>
+                </div>
+            <div id="starting">
+           
+            </div>
+                 <div id="changepassform" class="pinfield">
+                    <form name="pin">
+                        <ul>
+                            <li>
+                                <label for="j_pin">Old Security PIN:</label><br>
+                                <input class="pininput" type="password" name="oldpin" id="j_pin" tabindex="1" maxlength="4" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
+                            </li>
+
+                            <li>
+                                <label for="j_new_pin" >New Security PIN:</label><br>
+                                <input class="pininput" type="password" name="newpin" id="j_new_pin" tabindex="2" maxlength="4" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
+                            </li>
+                            
+                            <li>
+                                <label for="j_pin_confirm" >New Security PIN (confirm):</label><br>
+                                <input class="pininput" type="password" name="verifypin" id="j_pin_confirm" tabindex="3" maxlength="4" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
+                            </li>
+
+                            <li class="button">
+                                <input type="button" value="Change" name="Submit" style="margin-top:10px;" tabindex="4" onclick=javascript:validate(oldpin.value,newpin.value,verifypin.value)>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+         </div>
+         <div class="mfooter">
+            Copyright 2011 | All Rights Reserved
+         </div>
+      </div>
+	</body>
+</html>

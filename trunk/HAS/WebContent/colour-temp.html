@@ -46,7 +46,7 @@
 		width: 120px;
 		height: 100px;
 		margin-top: 18px;
-		margin-left: 350px;
+		margin-left: 375px;
 		background-image: none;
 	}
 	#red .ui-slider-range { background: #ef2929; }
@@ -133,27 +133,30 @@
                     <p>Status information regarding the component goes here</p>
                 </div>
                 
-				<div id="sliderdescription">
-					Use the RGB sliders to change the colour temperature:
-				</div>
-				
-				<div id="slidercontainer">
-				
-					<div id="red"></div>
-					<div id="green"></div>
-					<div id="blue"></div>
+				<div id="rgbwrapper">
+					<div id="sliderdescription">
+						Use the RGB sliders to change the colour temperature:
+					</div>
+					
+					<div id="slidercontainer">
+					
+						<div id="red"></div>
+						<div id="green"></div>
+						<div id="blue"></div>
 
-					<div id="swatch" class="ui-widget-content ui-corner-all"></div>
-				</div>
-				
-				<div id="slidersubmitbutton">
-					<form action="j_security_check" method="POST" accept-charset="UTF-8"> 
-                		<ul>
-							<li class="button">
-								<input type="submit" name="changecolourtemp" value="Set" tabindex="1">
-							</li>
-						</ul>
-					</form>
+						<div id="swatch" class="ui-widget-content ui-corner-all"></div>
+					</div>
+					
+					<div id="slidersubmitbutton">
+						<form action="j_security_check" method="POST" accept-charset="UTF-8"> 
+							<ul>
+								<li class="button">
+									<input type="submit" name="changecolourtemp" value="Set" tabindex="1">
+									<input type="submit" name="clearcolourtemp" value="Clear" tabindex="2">
+								</li>
+							</ul>
+						</form>
+					</div>
 				</div>
             </div>
         
