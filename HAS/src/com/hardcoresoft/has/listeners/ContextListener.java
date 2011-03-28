@@ -6,7 +6,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import com.hardcoresoft.has.messaging.HASMessageListener;
+import com.hardcoresoft.has.messaging.HVACMessageListener;
 import com.hardcoresoft.has.datastorage.DataStorage;
 
 /**
@@ -43,7 +43,7 @@ public class ContextListener implements ServletContextListener {
 		//Init data
 		DataStorage.getInstance();
 	    this.context = event.getServletContext();
-	    HASMessageListener.getInstance();
+	    HVACMessageListener.getInstance();
 	    
 	    
 	    //Output a simple message to the server's console
