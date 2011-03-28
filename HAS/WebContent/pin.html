@@ -39,7 +39,7 @@
                 
                 <div id="topnavwrapper">
                     <div id="topleftnav">
-                        <p><a href="home.html">Home</a> > <a href="components.html">My Components</a> > <a href="security.html">Security</a> > <a href="config.html">Configure System</a></p>
+                        <p><a href="home.html">Home</a> > <a href="components.html">My Components</a> > <a href="security.html">Security</a></p>
                     </div>
         
                     <div id="welcomebar">
@@ -64,29 +64,19 @@
 
             <div id="maincontainer">
                 <div id="status">
-                    <p>To change your 4-digit PIN, enter your credentials:</p>
+                    <p>Please enter your 4-digit PIN to toggle the security system:</p>
                 </div>
                 <div class="pinfield">
                     <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
                     
                         <ul>
                             <li>
-                                <label for="j_pin">Old Security PIN:</label>
-                                <input class="pininput" type="password" name="oldpin" id="j_pin" tabindex="1" maxlength="4">
-                            </li>
-
-                            <li>
-                                <label for="j_new_pin" >New Security PIN:</label>
-                                <input class="pininput" type="password" name="newpin" id="j_new_pin" tabindex="2" maxlength="4">
-                            </li>
-                            
-                            <li>
-                                <label for="j_pin_confirm" >New Security PIN (confirm):</label>
-                                <input class="pininput" type="password" name="verifypin" id="j_pin_confirm" tabindex="3" maxlength="4">
+                                <label for="j_pin">Security PIN:</label>
+                                <input class="pininput" type="password" name="pin" id="j_pin" tabindex="1" maxlength="4">
                             </li>
 
                             <li class="button">
-                                <input type="submit" name="changepin" value="Submit" tabindex="4">
+                                <input type="submit" name="togglesys" value="Submit" tabindex="2">
                             </li>
                         </ul>
                         

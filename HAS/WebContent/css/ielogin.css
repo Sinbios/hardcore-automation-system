@@ -6,8 +6,6 @@ body
 	background-color: #009933;
 	font-family: "verdana";
 	font-size: 14px;
-	color: #000;
-	overflow-x:auto;
 	
 	/*Base dimensions*/
 	width: 1024px;
@@ -26,7 +24,6 @@ body
 	float: left;
 	padding-top: 10.375em;
 	padding-left: 3.75em;
-	/*width: 45%;*/
 }
 
 #loginformcontainer
@@ -45,7 +42,16 @@ body
 
 #loginformcontainer ul li img.useridimg
 {
-	margin-left: 2.175em;
+	margin-left: 8.75em;
+	margin-top: 3px;
+	float: left;
+}
+
+#loginformcontainer ul li img.passwdimg
+{
+	margin-left: 6.6625em;
+	margin-top: 3px;
+	float: left;
 }
 
 #loginformcontainer input.textfields
@@ -55,7 +61,7 @@ body
 	border: 1px solid #9CB7CE;
 	font-family: "Verdana";
 	font-size: 1em;
-	margin-left: 0.875em;
+	float: right;
 }
 
 #loginformcontainer input.submitbutton
