@@ -239,7 +239,7 @@ public class SecurityDataController {
 	//Public functions
 	public void readSecurityData()
 	{
-		parseSecurityXmlFile("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\security.xml");
+		parseSecurityXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\security.xml");
 		parseSecurityDocument();
 	}
 	
@@ -247,7 +247,7 @@ public class SecurityDataController {
 	{
 		createSecurityDocument();
 		createSecurityDOMTree();
-		printSecurityXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\security_list.xml");
+		printSecurityXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\security.xml");
 	}
 	
 	public static SecurityMode convertIntToSecurityStatus(int value)

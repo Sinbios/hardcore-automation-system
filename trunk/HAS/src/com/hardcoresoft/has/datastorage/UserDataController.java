@@ -197,7 +197,7 @@ public class UserDataController {
 	//Public functions
 	public void readUserData()
 	{
-		parseUserXmlFile("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\user.xml");
+		parseUserXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\user.xml");
 		parseUserDocument();
 	}
 	
@@ -205,7 +205,7 @@ public class UserDataController {
 	{
 		createUserDocument();
 		createUserDOMTree();
-		printUserXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\user_test.xml");
+		printUserXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\user.xml");
 	}
 	
 	public static UserPermission convertIntToUserPermission(int value)

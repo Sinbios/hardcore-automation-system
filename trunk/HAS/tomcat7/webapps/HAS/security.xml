@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:security xmlns:tns="http://www.example.org/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/security security.xsd">
+<tns:security xmlns:tns="http://www.example.org/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/security security.xsd ">
     <tns:connected>true</tns:connected>
     <tns:ipAddress>192.168.0.3</tns:ipAddress>
     <tns:port>32</tns:port>
