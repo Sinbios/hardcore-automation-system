@@ -20,10 +20,8 @@ public class HASMessageListener implements MessageListener {
     private boolean transacted = false;
     private MessageProducer replyProducer;
     
-    private DataStorage oDataRef = DataStorage.getSingletonObject();
-
     public HASMessageListener() {
-        this.setupMessageQueueConsumer(oDataRef.getoHVACData().getoHVACData().getsMsgQueueName());
+        this.setupMessageQueueConsumer(DataStorage.getInstance().getoHVACData().getoHVACData().getsMsgQueueName());
     }
 
     private void setupMessageQueueConsumer(String queuename) {

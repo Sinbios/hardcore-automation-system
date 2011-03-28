@@ -41,8 +41,7 @@ public class ContextListener implements ServletContextListener {
 	  public void contextInitialized(ServletContextEvent event)
 	  {
 		//Init data
-		DataStorage oDataRef = DataStorage.getSingletonObject();
-		oDataRef.initDataStorage();
+		DataStorage.getInstance();
 	    this.context = event.getServletContext();
 	    HASMessageListener.getInstance();
 	    

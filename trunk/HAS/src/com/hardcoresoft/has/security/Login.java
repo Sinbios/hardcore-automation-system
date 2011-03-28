@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession(true); 
 		session.setAttribute("user", username);
 		
-		UserDataNode userNode = DataStorage.getSingletonObject().getoUserData().getoUserData().findUser(username);
+		UserDataNode userNode = DataStorage.getInstance().getoUserData().getoUserData().findUser(username);
 		
 		if (userNode != null) {
 			if (userNode.validatePassword(password)) {
