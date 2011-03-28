@@ -58,7 +58,12 @@ package com.hardcoresoft.has.datastorage;
 	public void setoSecurityData(SecurityDataController oSecurityData) {
 		this.oSecurityData = oSecurityData;
 	}
-
+	
+	/**
+	 * Function: public void initDataStorage()
+	 * Parameters: N/A
+	 * Description: Reads each XML file and prints out data to console for debugging.
+	 */
 	public void initDataStorage(){
 		 String NEW_LINE = System.getProperty("line.separator");
 		 System.out.println("Initializing HVAC Data...");

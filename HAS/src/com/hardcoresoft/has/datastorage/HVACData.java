@@ -1,5 +1,10 @@
 package com.hardcoresoft.has.datastorage;
 
+
+/**
+ * Function: public class HVACData
+ * Description: Wrapper class for HVAC data storage.
+ */
 public class HVACData {
 	
 	//Member variables
