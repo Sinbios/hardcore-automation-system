@@ -9,6 +9,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.apache.activemq.*;
+import org.apache.activemq.util.JMSExceptionSupport;
 
 public abstract class HASComponent
 {
@@ -39,7 +40,14 @@ public abstract class HASComponent
 
 	protected void LogException(Exception ex)
 	{
-		// Log an exception here
+		try
+		{
+			sendMessage("Exception occurred: " + ex.getMessage());
+		}
+		catch(JMSException e)
+		{
+			// Can't even get the exception message 
+		}
 	}
 	
 	public void handle(String action, String[] parameters) {
