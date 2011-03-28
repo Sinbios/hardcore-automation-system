@@ -269,7 +269,7 @@ public class SecurityDataController {
 	 */
 	public void readSecurityData()
 	{
-		parseSecurityXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\security.xml");
+		parseSecurityXmlFile(System.getProperty("catalina.home") + "/webapps/HAS/security.xml");
 		parseSecurityDocument();
 	}
 	
@@ -282,7 +282,7 @@ public class SecurityDataController {
 	{
 		createSecurityDocument();
 		createSecurityDOMTree();
-		printSecurityXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\security.xml");
+		printSecurityXML(System.getProperty("catalina.home") + "/webapps/HAS/security.xml");
 	}
 	
 	public SecurityData getoSecurityData() {

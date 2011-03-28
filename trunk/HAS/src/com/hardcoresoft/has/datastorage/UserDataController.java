@@ -223,7 +223,7 @@ public class UserDataController {
 	 */
 	public void readUserData()
 	{
-		parseUserXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\user.xml");
+		parseUserXmlFile(System.getProperty("catalina.home") + "/webapps/HAS/user.xml");
 		parseUserDocument();
 	}
 	
@@ -236,7 +236,7 @@ public class UserDataController {
 	{
 		createUserDocument();
 		createUserDOMTree();
-		printUserXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\user.xml");
+		printUserXML(System.getProperty("catalina.home") + "/webapps/HAS/user.xml");
 	}
 	
 	public UserData getoUserData() {
