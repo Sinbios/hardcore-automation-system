@@ -1,6 +1,7 @@
 package com.hardcoresoft.has.listeners;
 
 import javax.servlet.ServletContext;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -14,7 +15,9 @@ import com.hardcoresoft.has.datastorage.DataStorage;
  */
 @WebListener
 public class ContextListener implements ServletContextListener {
+	
 	  private ServletContext context = null;
+	 
 
 	  public ContextListener() {}
 
@@ -37,11 +40,13 @@ public class ContextListener implements ServletContextListener {
 
 	  public void contextInitialized(ServletContextEvent event)
 	  {
+		//Init data
+		DataStorage oDataRef = DataStorage.getSingletonObject();
+		oDataRef.initDataStorage();
 	    this.context = event.getServletContext();
 	    HASMessageListener.getInstance();
-	    //Init data
-	    DataStorage oData = DataStorage.getSingletonObject();
-	    oData.initDataStorage();
+	    
+	    
 	    //Output a simple message to the server's console
 	    System.out.println("Catalina says: SUP NIGGA, SERVER READY!");
 

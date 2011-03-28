@@ -3,7 +3,11 @@ package com.hardcoresoft.has.messaging;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import sun.jdbc.odbc.OdbcDef;
+
+import com.hardcoresoft.has.datastorage.DataStorage;
 import com.hardcoresoft.has.util.MessageUtil;
+
 
 import javax.jms.*;
 
@@ -15,19 +19,21 @@ public class HASMessageListener implements MessageListener {
     private Session session;
     private boolean transacted = false;
     private MessageProducer replyProducer;
+    
+    private DataStorage oDataRef = DataStorage.getSingletonObject();
 
     public HASMessageListener() {
-        this.setupMessageQueueConsumer();
+        this.setupMessageQueueConsumer(oDataRef.getoHVACData().getoHVACData().getsMsgQueueName());
     }
 
-    private void setupMessageQueueConsumer() {
+    private void setupMessageQueueConsumer(String queuename) {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
         Connection connection;
         try {
             connection = connectionFactory.createConnection();
             connection.start();
             this.session = connection.createSession(this.transacted, Session.AUTO_ACKNOWLEDGE);
-            Destination adminQueue = this.session.createQueue(MessageUtil.getQueueName());
+            Destination adminQueue = this.session.createQueue(queuename);
 
             //Setup a message producer to respond to messages from clients, we will get the destination
             //to send to from the JMSReplyTo header field from a Message

@@ -22,8 +22,8 @@ public abstract class HASComponent
 	String ipAddress;
 	int port;
 	boolean connected;
-	private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
-	private static String subject = "TESTQUEUE";
+	protected static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
+	protected static String subject = "TESTQUEUE";
 
 	public HASComponent()
 	{
@@ -85,7 +85,7 @@ public abstract class HASComponent
         MessageProducer producer = session.createProducer(destination);
 
         // We will send a small text message saying 'Hello' in Japanese
-        TextMessage message = session.createTextMessage("FUK U");
+        TextMessage message = session.createTextMessage(body);
 
         // Here we are sending the message!
         producer.send(message);

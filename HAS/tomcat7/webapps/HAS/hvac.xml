@@ -4,7 +4,7 @@
     <tns:connected>true</tns:connected>
     <tns:ipAddress>192.168.2.1</tns:ipAddress>
     <tns:port>21</tns:port>
-    <tns:msgQueueName>msgQueueName</tns:msgQueueName>
+    <tns:msgQueueName>HVACQueue</tns:msgQueueName>
     <tns:currentTemperature>21.0</tns:currentTemperature>
     <tns:desiredTemperature>23.0</tns:desiredTemperature>
     <tns:status>0</tns:status>
