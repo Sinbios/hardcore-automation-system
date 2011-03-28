@@ -291,7 +291,7 @@ public class LightingDataController {
 	 */
 	public void readLightingData()
 	{
-		parseLightingXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\lighting.xml");
+		parseLightingXmlFile(System.getProperty("catalina.home") + "/webapps/HAS/lighting.xml");
 		parseLightingDocument();
 	}
 	
@@ -304,7 +304,7 @@ public class LightingDataController {
 	{
 		createLightingDocument();
 		createLightingDOMTree();
-		printLightingXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\lighting.xml");
+		printLightingXML(System.getProperty("catalina.home") + "/webapps/HAS/lighting.xml");
 	}
 	
 	public LightingData getoLightingData() {

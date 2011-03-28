@@ -288,7 +288,7 @@ public class HVACDataController {
 	public void readHVACData()
 	{
 		
-		parseHVACXmlFile(System.getProperty("catalina.home") + "\\webapps\\HAS\\hvac.xml");
+		parseHVACXmlFile(System.getProperty("catalina.home") + "/webapps/HAS/hvac.xml");
 		parseHVACDocument();
 	}
 	
