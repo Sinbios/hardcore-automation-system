@@ -148,6 +148,8 @@ public class HVACComponent extends HASComponent implements IHVACComponent
 
 	protected void Initialize()
 	{
+		subject = "HVACQueue";
+		
 		// Get initial status and desired temp
 	}
 
