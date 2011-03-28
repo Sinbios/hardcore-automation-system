@@ -5,6 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Function: public class SecuritySchedule
+ * Description: Container class for storing security schedule info. 
+ */
 public class SecuritySchedule {
 	
 	//Global variables
@@ -24,7 +28,12 @@ public class SecuritySchedule {
 		return oSchedule;
 	}
 
-	//Adds a new SecurityScheduleNode, if it already contains that date/time, false is returned.
+	/**
+	 * Function: public Boolean addScheduledAction(SecurityScheduleNode scheduleNode)
+	 * Parameters: SecurityScheduleNode scheduleNode - the Lighting schedule node to be added. 
+	 * Description: Adds a new LightingScheduleNode, if it already contains that 
+	 * date/time, false is returned.
+	 */	
 	public Boolean addScheduledAction(SecurityScheduleNode scheduleNode){
 		try
 		{
@@ -46,8 +55,12 @@ public class SecuritySchedule {
 		return null;
 	}
 	
-	//Removes the node with the provided date and subsequently replaces it with a new node
-	//with new temperature.
+	/**
+	 * Function: public Boolean updateScheduledAction(Date date, SecurityMode mode)
+	 * Parameters: Data date - date of the node to be updated. SecurityMode mode - new mode. 
+	 * Description: Removes the node with the provided date and subsequently replaces it with a new node
+	 * with new security mode.
+	 */
 	public Boolean updateScheduledAction(Date date, SecurityMode mode){
 		try{
 			if(deleteScheduledAction(date) == true){
@@ -64,7 +77,11 @@ public class SecuritySchedule {
 		return false;
 	}
 	
-	//Removes a node with the same date/time as provided. 
+	/**
+	 * Function: public Boolean deleteScheduledAction(Date date)
+	 * Parameters: Data date - date of the node to be removed.
+	 * Description: Removes the node with the provided date.
+	 */ 
 	public Boolean deleteScheduledAction(Date date){
 		try{
 			SecurityScheduleNode oCompare = new SecurityScheduleNode(date, convertIntToSecurityStatus(0));
@@ -76,7 +93,11 @@ public class SecuritySchedule {
 		return false;
 	}
 	
-	//Finds a SecurityScheduleNode based on date,  if nothing found, return null.
+	/**
+	 * Function: public SecurityScheduleNode findScheduledAction(Date date)
+	 * Parameters: Data date - date of the node to be removed.
+	 * Description: Finds the node with the provided date. Returns NULL if not found.
+	 */
 	public SecurityScheduleNode findScheduledAction(Date date){
 		try{
 			SecurityScheduleNode oCompare = new SecurityScheduleNode(date, convertIntToSecurityStatus(0));

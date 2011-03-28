@@ -1,5 +1,9 @@
 package com.hardcoresoft.has.datastorage;
 
+/**
+ * Function: public class SecurityData
+ * Description: Wrapper class for security data storage.
+ */
 public class SecurityData {
 
 	//Member variables

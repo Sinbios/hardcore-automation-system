@@ -96,7 +96,7 @@ public class HVACSchedule {
 	/**
 	 * Function: public HVACScheduleNode findScheduledAction(Date date)
 	 * Parameters: Data date - date of the node to be removed.
-	 * Description: Finds the node with the provided date.
+	 * Description: Finds the node with the provided date. Returns NULL if not found. 
 	 */
 	public HVACScheduleNode findScheduledAction(Date date){
 		try{
