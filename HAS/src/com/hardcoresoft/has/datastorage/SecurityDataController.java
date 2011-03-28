@@ -250,6 +250,14 @@ public class SecurityDataController {
 		printSecurityXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\security.xml");
 	}
 	
+	public SecurityData getoSecurityData() {
+		return oSecurityData;
+	}
+
+	public void setoSecurityData(SecurityData oSecurityData) {
+		this.oSecurityData = oSecurityData;
+	}
+
 	public static SecurityMode convertIntToSecurityStatus(int value)
 	{
 		return SecurityMode.class.getEnumConstants()[value];

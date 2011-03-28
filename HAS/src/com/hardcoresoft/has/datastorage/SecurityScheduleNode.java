@@ -45,7 +45,8 @@ public class SecurityScheduleNode {
 		StringBuilder result = new StringBuilder();
 	    String NEW_LINE = System.getProperty("line.separator");
 	    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
-	    result.append("Date: " + this.getDate() + " Mode: " + this.getSecurityStatus() + NEW_LINE);
+	    result.append("<tns:date>" + this.getDate() + "</tns:date>" + NEW_LINE);
+	    result.append("<tns:mode>" + this.oSecurityStatus.ordinal() + "</tns:mode>" + NEW_LINE);
 	    return result.toString();
 	}
 

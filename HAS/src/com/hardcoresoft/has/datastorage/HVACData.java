@@ -97,5 +97,23 @@ public class HVACData {
 		this.oStatus = oStatus;
 	}
 	
+	//toString for debugging.
+	@Override public String toString() {
+		StringBuilder result = new StringBuilder();
+	    String NEW_LINE = System.getProperty("line.separator");
+	    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
+	    result.append("<tns:ipAddress>" + this.sIpAddress + "</tns:ipAddress>"+  NEW_LINE);
+	    result.append("<tns:port>" + Integer.toString(this.nPort) + "</tns:port>" + NEW_LINE);
+	    result.append("<tns:connected>" + Boolean.toString(this.bConnected) + "</tns:connected>" + NEW_LINE);
+	    result.append("<tns:msgQueueName>" + this.sMsgQueueName + "</tns:msgQueueName>" + NEW_LINE);
+	    result.append("<tns:currentTemperature>" + Double.toString(this.nCurrentTemperature) + "</tns:currentTemperature>" + NEW_LINE);
+	    result.append("<tns:desiredTemperature>" + Double.toString(this.nDesiredTemperature) + "</tns:desiredTemperature>" + NEW_LINE);
+	    result.append("<tns:status>" + Integer.toString(this.oStatus.ordinal()) + "</tns:status>" + NEW_LINE);
+	    result.append("<tns:schedule>" + NEW_LINE);
+	    result.append(this.getoSchedule().toString());
+	    result.append("</tns:schedule>");
+	    return result.toString();
+	}
+	
 	
 }

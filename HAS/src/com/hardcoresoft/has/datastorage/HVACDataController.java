@@ -34,6 +34,14 @@ public class HVACDataController {
 	Document oHVACDomWrite;
 	HVACData oHVACData;
 	
+	public HVACData getoHVACData() {
+		return oHVACData;
+	}
+
+	public void setoHVACData(HVACData oHVACData) {
+		this.oHVACData = oHVACData;
+	}
+
 	//Constructors
 	public HVACDataController(){
 		oHVACData = new HVACData();

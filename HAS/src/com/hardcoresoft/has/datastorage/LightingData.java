@@ -79,5 +79,23 @@ public class LightingData {
 	public void setoSchedule(LightingSchedule oSchedule) {
 		this.oSchedule = oSchedule;
 	}
+	
+	//toString for debugging.
+	@Override public String toString() {
+		StringBuilder result = new StringBuilder();
+	    String NEW_LINE = System.getProperty("line.separator");
+	    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
+	    result.append("<tns:ipAddress>" + this.sIpAddress + "</tns:ipAddress>"+  NEW_LINE);
+	    result.append("<tns:port>" + Integer.toString(this.nPort) + "</tns:port>" + NEW_LINE);
+	    result.append("<tns:connected>" + Boolean.toString(this.bConnected) + "</tns:connected>" + NEW_LINE);
+	    result.append("<tns:msgQueueName>" + this.sMsgQueueName + "</tns:msgQueueName>" + NEW_LINE);
+	    result.append("<tns:brightness>" + Integer.toString(this.nBrightness) + "</tns:brightness>" + NEW_LINE);
+	    result.append("<tns:colourTemp>" + Integer.toString(this.nColourTemp) + "</tns:colourTemp>" + NEW_LINE);
+	    result.append("<tns:status>" + Boolean.toString(this.bOperationalStatus) + "</tns:status>" + NEW_LINE);
+	    result.append("<tns:schedule>" + NEW_LINE);
+	    result.append(this.getoSchedule().toString());
+	    result.append("</tns:schedule>");
+	    return result.toString();
+	}
 
 }

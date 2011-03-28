@@ -44,7 +44,8 @@ public class HVACScheduleNode {
 		StringBuilder result = new StringBuilder();
 	    String NEW_LINE = System.getProperty("line.separator");
 	    result.append(this.getClass().getName() + " Object {" + NEW_LINE);
-	    result.append("Date: " + this.getDate() + " Temperature: " + this.getDesiredTemp() + NEW_LINE);
+	    result.append("<tns:date>" + this.getDate() + "</tns:date>" + NEW_LINE);
+	    result.append("<tns:desiredTemperature>" + this.getDesiredTemp() + "</tns:desiredTemperature>" + NEW_LINE);
 	    return result.toString();
 	}
 }

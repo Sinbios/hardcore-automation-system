@@ -29,6 +29,8 @@ public class LightingDataController {
 	Document oLightingDomWrite;
 	LightingData oLightingData;
 	
+	
+
 	//Constructors
 	public LightingDataController(){
 		oLightingData = new LightingData();
@@ -265,6 +267,14 @@ public class LightingDataController {
 		createLightingDocument();
 		createLightingDOMTree();
 		printLightingXML(System.getProperty("catalina.home") + "\\webapps\\HAS\\lighting.xml");
+	}
+	
+	public LightingData getoLightingData() {
+		return oLightingData;
+	}
+
+	public void setoLightingData(LightingData oLightingData) {
+		this.oLightingData = oLightingData;
 	}
 
 }
