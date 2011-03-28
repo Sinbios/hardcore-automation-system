@@ -2,6 +2,7 @@ package com.hardcoresoft.has.components.hvac;
 
 import java.util.HashMap;
 
+import com.hardcoresoft.has.components.ComponentMessageListener;
 import com.hardcoresoft.has.components.HASComponent;
 import com.hardcoresoft.has.exceptions.NameConflictException;
 
@@ -148,8 +149,15 @@ public class HVACComponent extends HASComponent implements IHVACComponent
 
 	protected void Initialize()
 	{
-		subject = "HVACQueue";
-		
+		try{
+		subject = "HVACRXQueue";
+		ComponentMessageListener oRef = (ComponentMessageListener) ComponentMessageListener.getInstance();
+		oRef.init(subject);
+		sendMessage("Connect");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		// Get initial status and desired temp
 	}
 
