@@ -51,10 +51,10 @@ public abstract class HASComponent
 	}
 	
 	public void handle(String action, String[] parameters) {
-		if (action.equals("sendmessage")) {
+		if (action.equals("Sendmessage")) {
 			if (parameters[1] != null) {
 				try {
-					this.sendMessage(parameters[1]);
+					this.sendMessage(parameters[1]+":"+parameters[2]);
 				} catch (JMSException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -78,7 +78,7 @@ public abstract class HASComponent
         // Destination represents here our queue 'TESTQUEUE' on the
         // JMS server. You don't have to do anything special on the
         // server to create it, it will be created automatically.
-        Destination destination = session.createQueue(subject);
+        Destination destination = session.createQueue("HVACQueue");
 
         // MessageProducer is used for sending messages (as opposed
         // to MessageConsumer which is used for receiving them)
