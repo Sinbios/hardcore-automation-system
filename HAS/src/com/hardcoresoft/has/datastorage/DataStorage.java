@@ -1,33 +1,27 @@
 package com.hardcoresoft.has.datastorage;
 
+public class DataStorage {
+	// Member variables
+	LightingDataController oLightingData;
+	HVACDataController oHVACData;
+	UserDataController oUserData;
+	SecurityDataController oSecurityData;
 
+	private static final DataStorage ref = new DataStorage();
+	
+	private DataStorage() {
+		initDataStorage();
+	}
 
-	public class DataStorage
-	{
-		//Member variables
-		LightingDataController oLightingData;
-		HVACDataController oHVACData;
-		UserDataController oUserData;
-		SecurityDataController oSecurityData; 
-		
-	  public static DataStorage getSingletonObject()
-	  {
-	    if (ref == null){
-	        ref = new DataStorage();
-	        System.out.println("Test-mb");
-	    }
-	    return ref;
-	  }
+	public static DataStorage getInstance() {
+		return ref;
+	}
 
-	  public Object clone()
-		throws CloneNotSupportedException
-	  {
-	    throw new CloneNotSupportedException(); 
-	  }
+	public Object clone() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException();
+	}
 
-	  private static DataStorage ref;
-	  
-	  public LightingDataController getoLightingData() {
+	public LightingDataController getoLightingData() {
 		return oLightingData;
 	}
 
@@ -58,46 +52,45 @@ package com.hardcoresoft.has.datastorage;
 	public void setoSecurityData(SecurityDataController oSecurityData) {
 		this.oSecurityData = oSecurityData;
 	}
-	
+
 	/**
-	 * Function: public void initDataStorage()
-	 * Parameters: N/A
-	 * Description: Reads each XML file and prints out data to console for debugging.
+	 * Function: public void initDataStorage() Parameters: N/A Description:
+	 * Reads each XML file and prints out data to console for debugging.
 	 */
-	public void initDataStorage(){
-		 String NEW_LINE = System.getProperty("line.separator");
-		 System.out.println("Initializing HVAC Data...");
-		 oHVACData  = new HVACDataController();
-		 oHVACData.readHVACData();
-		 System.out.println(oHVACData.oHVACData.toString() + NEW_LINE);
-		 System.out.println("Initializing Lighting Data...");
-		 oLightingData  = new LightingDataController();
-		 oLightingData.readLightingData();
-		 System.out.println(oLightingData.oLightingData.toString() + NEW_LINE);
-		 System.out.println("Initializing Security Data...");
-		 oSecurityData = new SecurityDataController();
-		 oSecurityData.readSecurityData();
-		 System.out.println(oSecurityData.oSecurityData.toString() + NEW_LINE);
-		 System.out.println("Initializing User Data...");
-		 oUserData = new UserDataController();
-		 oUserData.readUserData();
-		 System.out.println(oUserData.oUserData.toString() + NEW_LINE);
-	  }
-	  
-	  public void updateUserData(){
-		  oUserData.writeUserData();
-	  }
-	  
-	  public void updateHVACData(){
-		  oHVACData.writeHVACData();
-	  }
-	  
-	  public void updateLightingData(){
-		  oLightingData.writeLightingData();
-	  }
-	  
-	  public void updateSecurityData(){
-		  oSecurityData.writeSecurityData();
-	  }
-	  
+	public void initDataStorage() {
+		String NEW_LINE = System.getProperty("line.separator");
+		System.out.println("Initializing HVAC Data...");
+		oHVACData = new HVACDataController();
+		oHVACData.readHVACData();
+		System.out.println(oHVACData.oHVACData.toString() + NEW_LINE);
+		System.out.println("Initializing Lighting Data...");
+		oLightingData = new LightingDataController();
+		oLightingData.readLightingData();
+		System.out.println(oLightingData.oLightingData.toString() + NEW_LINE);
+		System.out.println("Initializing Security Data...");
+		oSecurityData = new SecurityDataController();
+		oSecurityData.readSecurityData();
+		System.out.println(oSecurityData.oSecurityData.toString() + NEW_LINE);
+		System.out.println("Initializing User Data...");
+		oUserData = new UserDataController();
+		oUserData.readUserData();
+		System.out.println(oUserData.oUserData.toString() + NEW_LINE);
 	}
+
+	public void updateUserData() {
+		oUserData.writeUserData();
+	}
+
+	public void updateHVACData() {
+		oHVACData.writeHVACData();
+	}
+
+	public void updateLightingData() {
+		oLightingData.writeLightingData();
+	}
+
+	public void updateSecurityData() {
+		oSecurityData.writeSecurityData();
+	}
+
+}
