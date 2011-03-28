@@ -1,5 +1,9 @@
 package com.hardcoresoft.has.datastorage;
 
+/**
+ * Function: public class UserDataNode
+ * Description: Container class for storing user info. 
+ */
 public class UserDataNode {
 
 	//Member variables
@@ -53,6 +57,11 @@ public class UserDataNode {
 	
 	//Public methods
 	
+	/**
+	 * Function: public Boolean validatePassword(String password)
+	 * Parameters: String password - password attempt to validate.
+	 * Description: Returns true if password is correct, false if incorrect.
+	 */
 	public Boolean validatePassword(String password){
 		try{
 			if(password.equals(sPassword)){
@@ -65,6 +74,12 @@ public class UserDataNode {
 		return false;
 	}
 	
+	/**
+	 * Function: public Boolean changePassword(String currentPassword, String newPassword)
+	 * Parameters: String currentPassword - current PW, String newPassword - new PW.
+	 * Description: Returns true if current password is correct, false if incorrect. If 
+	 * correct, changes the password to the new password.  
+	 */
 	public Boolean changePassword(String currentPassword, String newPassword){
 		try{
 			if(validatePassword(currentPassword) == true){

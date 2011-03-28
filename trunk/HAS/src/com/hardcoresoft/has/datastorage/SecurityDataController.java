@@ -119,8 +119,6 @@ public class SecurityDataController {
 		return null;
 	}
 	
-	
-	
 	/**
 	 * Function: private void createSecurityDocument()
 	 * Parameters: N/A
