@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:security xmlns:tns="http://www.example.org/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/security security.xsd ">
+    <tns:connected>true</tns:connected>
+    <tns:ipAddress>192.168.0.3</tns:ipAddress>
+    <tns:port>32</tns:port>
+    <tns:msgQueueName>tns:msgQueueName</tns:msgQueueName>
+    <tns:pin>1234</tns:pin>
+    <tns:status>0</tns:status>
+    <tns:schedule>
+        <tns:action>
+            <tns:date>2001-12-31T12:00:00</tns:date>
+            <tns:mode>0</tns:mode>
+        </tns:action>
+        <tns:action>
+            <tns:date>2003-12-31T12:00:00</tns:date>
+            <tns:mode>1</tns:mode>
+        </tns:action>
+    </tns:schedule>
+</tns:security>

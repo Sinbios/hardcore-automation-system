@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/hvac" xmlns:tns="http://www.example.org/hvac" elementFormDefault="qualified">
+
+    <element name="ipAddress" type="string"></element>
+
+    <element name="port" type="int"></element>
+
+    <element name="connected" type="boolean"></element>
+
+
+
+
+    <element name="status" type="int"></element>
+    
+    
+    <element name="schedule" type="tns:securitySchedule"></element>
+    
+    <complexType name="securitySchedule">
+    	<sequence>
+    		<element name="action" type="tns:securityScheduleNode" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+
+    <element name="security" type="tns:security"></element>
+    
+    <complexType name="security">
+    	<sequence>
+    		<element ref="tns:connected"></element>
+    		<element ref="tns:ipAddress"></element>
+    		<element ref="tns:port"></element>
+    		<element ref="tns:msgQueueName"></element>
+            <element ref="tns:pin"></element>
+            <element ref="tns:status"></element>
+    		<element ref="tns:schedule"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="securityScheduleNode">
+    	<sequence>
+    		<element name="date" type="dateTime" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="mode" type="int" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="msgQueueName" type="string"></element>
+
+    <element name="pin" type="int"></element>
+</schema>

@@ -254,8 +254,8 @@ public class HVACDataController {
 		printHVACXML("L:\\ece355_proj\\HAS\\src\\com\\hardcoresoft\\has\\datastorage\\hvac_test.xml");
 	}
 	
-	public static HVACStatus convertIntToHVACStatus(int value)
+	public static HVACStatusEnum convertIntToHVACStatus(int value)
 	{
-		return HVACStatus.class.getEnumConstants()[value];
+		return HVACStatusEnum.class.getEnumConstants()[value];
 	}
 }
