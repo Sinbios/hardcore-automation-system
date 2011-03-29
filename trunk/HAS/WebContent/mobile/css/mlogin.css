@@ -22,7 +22,7 @@ body{
    text-align: right;
    margin-top:4px;
 }
-input#name, input#password{
+input.textfields{
    font-family: Verdana; font-size: 18px;
    color: #009933;
    -moz-border-radius: 10px;
