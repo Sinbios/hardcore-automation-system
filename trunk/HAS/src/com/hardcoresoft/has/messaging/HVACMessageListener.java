@@ -54,7 +54,7 @@ public class HVACMessageListener implements MessageListener {
                 TextMessage txtMsg = (TextMessage) message;
                 String messageText = txtMsg.getText();
                 System.out.println("MSG[" + messageText + "]");
-                MessageHandler(messageText);
+                messageHandler(messageText);
                    
             }
             
@@ -75,7 +75,7 @@ public class HVACMessageListener implements MessageListener {
         }
     }
     
-    private void MessageHandler(String message)
+    private void messageHandler(String message)
     {
     	try
     	{

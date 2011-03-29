@@ -56,13 +56,9 @@ public class Login extends HttpServlet {
 				session.setAttribute("username", username); 
 				// TODO: this needs to redirect to a JSP file that checks session for user info
 				response.sendRedirect("home.jsp");
-			} else {
-				// TODO: redirect back to login page with username filled in
-				out.println ("<h3>Invalid username/password.</h3>");
+				return;
 			}
-		} else {
-			// TODO: redirect back to login page with username filled in
-			out.println ("<h3>Invalid username/password.</h3>");
 		}
+		response.sendRedirect("login.jsp?error=true&username=" + user.getsUserName());
 	}
 }
