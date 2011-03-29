@@ -75,6 +75,23 @@ public class DataStorage {
 		oUserData = new UserDataController();
 		oUserData.readUserData();
 		System.out.println(oUserData.oUserData.toString() + NEW_LINE);
+		resetConnectedVariables();
+	}
+	
+	/**
+	 * Function: private void resetConnectedVariables() 
+	 * Parameters: N/A 
+	 * Description: On system startup, reset the "connected" elements for each 
+	 * component to false. Will be set to true when they connect. The reason for this
+	 * is incase the components randomly disconnect.
+	 */
+	private void resetConnectedVariables(){
+		getoHVACData().getoHVACData().setbConnected(false);
+		getoHVACData().writeHVACData();
+		getoLightingData().getoLightingData().setbConnected(false);
+		getoLightingData().writeLightingData();
+		getoSecurityData().getoSecurityData().setbConnected(false);
+		getoLightingData().writeLightingData();
 	}
 
 	public void updateUserData() {
