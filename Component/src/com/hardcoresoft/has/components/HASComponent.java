@@ -23,7 +23,8 @@ public abstract class HASComponent
 	int port;
 	boolean connected;
 	protected static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
-	protected static String subject = "TESTQUEUE";
+	protected static String RXQueue = "TESTQUEUE";
+	protected static String TXQueue = "TESTQUEUE";
 
 	public HASComponent()
 	{
@@ -37,33 +38,29 @@ public abstract class HASComponent
 	protected abstract void MessageHandler(String msg) throws Exception;
 
 	protected abstract void Initialize();
-
-	protected void LogException(Exception ex)
-	{
-		try
-		{
-			sendMessage("Exception occurred: " + ex.getMessage());
-		}
-		catch(JMSException e)
-		{
-			// Can't even get the exception message 
-		}
-	}
 	
 	public void handle(String action, String[] parameters) {
 		if (action.equals("Sendmessage")) {
 			if (parameters[1] != null) {
 				try {
-					this.sendMessage(parameters[1]+":"+parameters[2]);
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					if(parameters[2] != null ){
+						this.sendMessage(parameters[1]+":"+parameters[2],TXQueue);
+					}
+				}catch(Exception e)
+				{
+					try{
+						this.sendMessage(parameters[1],TXQueue);
+					}
+					catch(Exception ex){
+						ex.printStackTrace();
+				}
+				
 				}
 			}
 		}
 	}
 	
-	protected void sendMessage(String body) throws JMSException {
+	protected void sendMessage(String body,String destQueue) throws JMSException {
 		ConnectionFactory connectionFactory =
             new ActiveMQConnectionFactory(url);
         Connection connection = connectionFactory.createConnection();
@@ -78,7 +75,7 @@ public abstract class HASComponent
         // Destination represents here our queue 'TESTQUEUE' on the
         // JMS server. You don't have to do anything special on the
         // server to create it, it will be created automatically.
-        Destination destination = session.createQueue("HVACQueue");
+        Destination destination = session.createQueue(destQueue);
 
         // MessageProducer is used for sending messages (as opposed
         // to MessageConsumer which is used for receiving them)
