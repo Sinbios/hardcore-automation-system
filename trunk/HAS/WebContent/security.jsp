@@ -37,6 +37,14 @@
                         $(this).attr({ src : 'images/signout.png'});
                     }
                 );
+                $.get('securitystatus.jsp', function(data) {
+               		$('#status').html(data);
+               	});
+                $(document).everyTime(1000, 'controlled', function() {
+                	$.get('securitystatus.jsp', function(data) {
+                   		$('#status').html(data);
+                   	});
+				});
             });
         </script>
 	</head>
@@ -47,7 +55,7 @@
             <div id="maincontainer">
 
                 <div id="status">
-                    <p>Status information regarding the component goes here</p>
+                    
                 </div>
 
                 <table>

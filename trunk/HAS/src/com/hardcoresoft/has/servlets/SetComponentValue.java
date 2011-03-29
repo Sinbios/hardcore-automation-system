@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hardcoresoft.has.datastorage.DataStorage;
 import com.hardcoresoft.has.datastorage.HVACStatus;
+import com.hardcoresoft.has.datastorage.SecurityMode;
 import com.hardcoresoft.has.messaging.HVACMessageSender;
 import com.hardcoresoft.has.messaging.LightingMessageSender;
+import com.hardcoresoft.has.messaging.SecurityMessageSender;
 
 /**
  * Servlet implementation class SetComponentValue
@@ -81,6 +83,36 @@ public class SetComponentValue extends HttpServlet {
 				LightingMessageSender.getInstance().sendColourTemp(Integer.valueOf(color));
 			}
 			response.sendRedirect("lighting.jsp");
+		} else if (componentId.equals("security")) {
+			String pin = request.getParameter("pin");
+			if (pin != null) {
+				if (DataStorage.getInstance().getoSecurityData().getoSecurityData().getnPin() == Integer.valueOf(pin)) {
+					if (DataStorage.getInstance().getoSecurityData().getoSecurityData().getoStatus() == SecurityMode.OFF)
+						SecurityMessageSender.getInstance().sendStatus(SecurityMode.ARMED);
+					else if (DataStorage.getInstance().getoSecurityData().getoSecurityData().getoStatus() == SecurityMode.ARMED)
+						SecurityMessageSender.getInstance().sendStatus(SecurityMode.OFF);
+					else if (DataStorage.getInstance().getoSecurityData().getoSecurityData().getoStatus() == SecurityMode.ALARMON)
+						SecurityMessageSender.getInstance().disarmPin(Integer.valueOf(pin));
+					response.sendRedirect("security.jsp");
+				} else {
+					response.sendRedirect("pin.jsp");
+				}
+			}
+			String oldpin = request.getParameter("oldpin");
+			String newpin = request.getParameter("newpin");
+			String verifypin = request.getParameter("verifypin");
+			if (oldpin != null && newpin != null && verifypin != null) {
+				if (DataStorage.getInstance().getoSecurityData().getoSecurityData().getnPin() != Integer.valueOf(oldpin)) {
+					response.sendRedirect("config.jsp?error=oldpass");
+					return;
+				}
+				if (!newpin.equals(verifypin)) {
+					response.sendRedirect("config.jsp?error=match");
+					return;
+				}
+				DataStorage.getInstance().getoSecurityData().getoSecurityData().setnPin(Integer.valueOf(newpin));
+				response.sendRedirect("security.jsp");
+			}
 		}
 	}
 }
