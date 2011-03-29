@@ -48,6 +48,11 @@
             <div id="maincontainer">	
                 <div id="status">
                     <p>To change your password, enter your credentials:</p>
+                    <% if ("oldpass".equals(request.getParameter("error"))) { %>
+                    <p>Old password was incorrect.</p>
+                    <% } else if ("match".equals(request.getParameter("error"))) { %>
+                    <p>New password and verification do not match.</p>
+                    <% } %>
                 </div>			
                 <div class="pwdfield">
                     <form action="ChangePassword" method="POST" accept-charset="UTF-8"> 

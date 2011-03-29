@@ -50,8 +50,8 @@
                     <p>Please enter your 4-digit PIN to toggle the security system:</p>
                 </div>
                 <div class="pinfield">
-                    <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
-                    
+                    <form action="SetComponentValue" method="POST" accept-charset="UTF-8"> 
+                    	<input type="hidden" name="componentId" value="security"/>
                         <ul>
                             <li>
                                 <label for="j_pin">Security PIN:</label>

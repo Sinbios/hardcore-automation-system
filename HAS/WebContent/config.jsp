@@ -48,10 +48,16 @@
             <div id="maincontainer">
                 <div id="status">
                     <p>To change your 4-digit PIN, enter your credentials:</p>
+                    <% if ("oldpass".equals(request.getParameter("error"))) { %>
+                    <p>Old pin was incorrect.</p>
+                    <% } else if ("match".equals(request.getParameter("error"))) { %>
+                    <p>New pin and verification do not match.</p>
+                    <% } %>
                 </div>
                 <div class="pinfield">
-                    <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
-                    
+                    <form action="SetComponentValue" method="POST" accept-charset="UTF-8"> 
+                    	<input type="hidden" name="componentId" value="security"/>
+                    	<input type="hidden" name="type" value="config"/>
                         <ul>
                             <li>
                                 <label for="j_pin">Old Security PIN:</label>

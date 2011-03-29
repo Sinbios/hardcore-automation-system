@@ -53,7 +53,7 @@
             <%@ include file="header.jsp" %>
             <div id="maincontainer">
                 <div id="status">
-                    <p>Status information regarding the component goes here</p>
+                    
                 </div>
             
                 <table>
