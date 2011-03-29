@@ -60,7 +60,13 @@ public class ComponentMessageListener  implements MessageListener {
                 TextMessage txtMsg = (TextMessage) message;
                 String messageText = txtMsg.getText();
                 System.out.println("MSG[" + messageText + "]");
-                response.setText(messageText);
+                try{
+                	StartComponent.component.MessageHandler(messageText);	
+                }
+                catch(Exception e){
+                	e.printStackTrace();
+                }
+                
             }
 
             //Set the correlation ID from the received message to be the correlation id of the response message

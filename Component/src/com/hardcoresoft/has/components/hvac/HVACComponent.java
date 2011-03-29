@@ -111,6 +111,9 @@ public class HVACComponent extends HASComponent
 		else if(msg.contains("Status")){
 			setStatus(Integer.parseInt(msg.split(":")[1]));
 		}
+		else if(msg.contains("CurrentTemperature")){
+			setCurrentTemperature(Double.parseDouble(msg.split(":")[1]));
+		}
 	}
 
 }
