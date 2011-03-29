@@ -10,13 +10,6 @@
 		<title>Home Automation System - Welcome</title>
 		<link rel="stylesheet" type="text/css" href="css/mlogin.css" />
 		<meta name="viewport" content="width=320" />
-		<script type="text/javascript">
-<!--
-if (screen.width > 700) {
-document.location = "../home.jsp";
-}
-//-->
-</script>
 	</head>
 	<body>
       <div class="mloginwrapper">
