@@ -52,8 +52,8 @@
                 </div>
             				
                 <div id="changetempform" class="tempfield">
-                    <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
-                    
+                    <form action="SetComponentValue" method="POST" accept-charset="UTF-8"> 
+                    	<input type="hidden" name="componentId" value="hvac"/>
                         <ul>
                             <li>
                                 <label for="j_desired_temp">Enter the desired temperature (in degrees celsius):</label>

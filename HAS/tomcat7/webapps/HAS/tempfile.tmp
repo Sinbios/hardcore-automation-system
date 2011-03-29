@@ -4,10 +4,17 @@
     <tns:connected>true</tns:connected>
     <tns:ipAddress>192.168.2.1</tns:ipAddress>
     <tns:port>21</tns:port>
+<<<<<<< .mine
+    <tns:msgQueueName>HVACQueue</tns:msgQueueName>
+    <tns:currentTemperature>20.0</tns:currentTemperature>
+    <tns:desiredTemperature>23.0</tns:desiredTemperature>
+    <tns:status>0</tns:status>
+=======
     <tns:msgQueueName>HVACRXQueue</tns:msgQueueName>
     <tns:currentTemperature>20.0</tns:currentTemperature>
     <tns:desiredTemperature>40.0</tns:desiredTemperature>
-    <tns:status>0</tns:status>
+    <tns:status>1</tns:status>
+>>>>>>> .r67
     <tns:schedule>
         <tns:action>
             <tns:date>2001-12-31T12:00:00</tns:date>

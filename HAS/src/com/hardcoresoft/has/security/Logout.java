@@ -27,7 +27,7 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("user", null);
-		response.sendRedirect("login.html");
+		response.sendRedirect("login.jsp");
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("user", null);
-		response.sendRedirect("login.html");
+		response.sendRedirect("login.jsp");
 	}
 
 }
