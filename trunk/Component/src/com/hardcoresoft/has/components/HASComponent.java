@@ -45,6 +45,11 @@ public abstract class HASComponent
 				try {
 					if(parameters[2] != null ){
 						this.sendMessage(parameters[1]+":"+parameters[2],TXQueue);
+						if(TXQueue.equals("HVACQueue") && parameters[1].contains("Temperature"))
+						{
+							this.sendMessage(parameters[1]+":"+parameters[2],RXQueue);
+							
+						}
 					}
 				}catch(Exception e)
 				{
@@ -90,4 +95,5 @@ public abstract class HASComponent
 
         connection.close();
 	}
+	
 }
