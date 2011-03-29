@@ -52,8 +52,8 @@
 
                 <table>
                     <tr>
-                        <td><a href="pin.html"><img src="images/arm-disarm.png" /></a></td>
-                        <td><a href="config.html"><img src="images/config-sys.png" /></a></td>
+                        <td><a href="pin.jsp"><img src="images/arm-disarm.png" /></a></td>
+                        <td><a href="config.jsp"><img src="images/config-sys.png" /></a></td>
                     </tr>
                 </table>
             </div>
