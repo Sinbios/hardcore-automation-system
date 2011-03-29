@@ -65,3 +65,10 @@ body
 	float: right;
 	outline: none; /*no dotted line on visited links*/
 }
+
+#errormessage{
+	color:#fff;
+	font-face:verdana;
+	font-size: 30px;
+	
+	}
