@@ -39,11 +39,14 @@
                 );
             });
         </script>
+		
 	</head>
+
 	<body>
         <div id="wrapper">
-            <%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>
             <div id="maincontainer">
+            
                 <div id="status">
                     <p>Status information regarding the component goes here</p>
                 </div>
@@ -61,11 +64,16 @@
                                 <input type="submit" name="settemp" value="Set" tabindex="2">
                             </li>
                         </ul>
+                        
                     </form>
                 </div>
+
+
             </div>
+        
         </div>
-            <%@ include file="footer.jsp" %>
+        <%@ include file="footer.jsp" %>
 	</body>
 </html>
+
 <% } %>
