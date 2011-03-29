@@ -1,3 +1,18 @@
+<%@ page language="java" %>
+<%@ page import="com.hardcoresoft.has.security.UserSecurity" %>
+<%@ page import="com.hardcoresoft.has.datastorage.UserPermission" %>
+<%@ page import="com.hardcoresoft.has.datastorage.UserDataNode" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<% 
+	boolean isLoggedIn = UserSecurity.authenticationCheck(request);
+	if (!isLoggedIn) {
+%>
+<%@ include file="login.jsp" %>
+<% } else { %>
+<%! UserDataNode user = null; %>
+<%! String selected = "components"; %>
+<% user = (UserDataNode) request.getSession().getAttribute("user"); %>
 <html>
 	<head>
 		<title>Home Automation System - Account Settings</title>
@@ -6,13 +21,10 @@
 	</head>
 	<body>
       <div class="mwrapper">
-         <div class="mtopbar">
-            <a href="home.html"><img src="img/mtopbar.png" ></a>
-         </div>
+		<%@ include file="header.jsp" %>
          <div class="mcontent">
-  <div id="changepassform" class="pwdfield">
+  		<div id="changepassform" class="pwdfield">
                     <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
-                    
                         <ul>
                             <li>
                                 <label for="j_password">Old password:</label>
@@ -42,15 +54,10 @@
                         
                     </form>
                 </div>
-
-
             </div>
-
          </div>
-
-         <div class="mfooter">
-            Copyright 2011 | All Rights Reserved
-         </div>
+         <%@ include file="footer.jsp" %>
       </div>
 	</body>
 </html>
+<% } %>
