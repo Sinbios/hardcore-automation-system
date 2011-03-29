@@ -2,6 +2,7 @@
 <%@ page import="com.hardcoresoft.has.security.UserSecurity" %>
 <%@ page import="com.hardcoresoft.has.datastorage.UserPermission" %>
 <%@ page import="com.hardcoresoft.has.datastorage.UserDataNode" %>
+<%@ page import="com.hardcoresoft.has.datastorage.DataStorage" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <% 
@@ -13,6 +14,9 @@
 <%! UserDataNode user = null; %>
 <%! String selected = "components"; %>
 <% user = (UserDataNode) request.getSession().getAttribute("user"); %>
+<% Boolean hvacConnected = DataStorage.getInstance().getoHVACData().getoHVACData().getbConnected(); %>
+<% Boolean lightingConnected = DataStorage.getInstance().getoLightingData().getoLightingData().getbConnected(); %>
+<% Boolean securityConnected = DataStorage.getInstance().getoSecurityData().getoSecurityData().getbConnected(); %>
 <html>
 	<head>
 		<title>Home Automation System - My Components</title>
