@@ -59,6 +59,6 @@ public class Login extends HttpServlet {
 				return;
 			}
 		}
-		response.sendRedirect("login.jsp?error=true&username=" + user.getsUserName());
+		response.sendRedirect("login.jsp?error=true");
 	}
 }
