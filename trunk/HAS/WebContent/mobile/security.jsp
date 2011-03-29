@@ -18,14 +18,35 @@
 		<title>Home Automation System - Security</title>
 		<link rel="stylesheet" type="text/css" href="css/mstyle.css" />
 		<meta name="viewport" content="width=320" />
+		
+		<script src="javascript/jquery-1.5.1.min.js" type="text/javascript"></script>
+		<script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                $('#submit').hover(
+                    function(){ // On mouseover, swap the signout.png image
+                        $(this).attr({ src : 'images/signout-hover.png'});
+                    },
+                    function(){ 
+                        $(this).attr({ src : 'images/signout.png'});
+                    }
+                );
+                $.get('securitystatus.jsp', function(data) {
+               		$('#status').html(data);
+               	});
+                $(document).everyTime(1000, 'controlled', function() {
+                	$.get('securitystatus.jsp', function(data) {
+                   		$('#status').html(data);
+                   	});
+				});
+            });
+        </script>
 	</head>
 	<body>
       <div class="mwrapper">
       
          <%@ include file="header.jsp" %>
          <div class="mcontent">
-            <div class="info">
-               The security system is probably on lol.
+            <div class="status">
             </div>
             <a href="secpower.jsp"><img src="img/msecuritypower.png"></a>
             <br>

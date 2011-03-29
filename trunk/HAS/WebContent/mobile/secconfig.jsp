@@ -41,25 +41,31 @@
 		<div id="starting">
 		</div>
 		<div id="changepassform" class="pinfield">
-			<form name="pin">
-				<ul>
-					<li>
-					<label for="j_pin">Old Security PIN:</label><br>
-					<input class="pininput" type="password" name="oldpin" id="j_pin" tabindex="1" maxlength="4" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
-					</li>
-					<li>
-					<label for="j_new_pin">New Security PIN:</label><br>
-					<input class="pininput" type="password" name="newpin" id="j_new_pin" tabindex="2" maxlength="4" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
-					</li>
-					<li>
-					<label for="j_pin_confirm">New Security PIN (confirm):</label><br>
-					<input class="pininput" type="password" name="verifypin" id="j_pin_confirm" tabindex="3" maxlength="4" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
-					</li>
-					<li class="button">
-					<input type="button" value="Change" name="Submit" style="margin-top:10px;" tabindex="4">
-					</li>
-				</ul>
-			</form>
+			 <form action="../SetComponentValue" method="POST" accept-charset="UTF-8"> 
+                    	<input type="hidden" name="componentId" value="security"/>
+                    	<input type="hidden" name="type" value="config"/>
+                        <ul>
+                            <li>
+                                <label for="j_pin">Old Security PIN:</label>
+                                <input class="pininput" type="password" name="oldpin" id="j_pin" tabindex="1" maxlength="4">
+                            </li>
+
+                            <li>
+                                <label for="j_new_pin" >New Security PIN:</label>
+                                <input class="pininput" type="password" name="newpin" id="j_new_pin" tabindex="2" maxlength="4">
+                            </li>
+                            
+                            <li>
+                                <label for="j_pin_confirm" >New Security PIN (confirm):</label>
+                                <input class="pininput" type="password" name="verifypin" id="j_pin_confirm" tabindex="3" maxlength="4">
+                            </li>
+
+                            <li class="button">
+                                <input type="submit" name="changepin" value="Submit" tabindex="4">
+                            </li>
+                        </ul>
+                        
+                    </form>
 		</div>
 	</div>
 </div>

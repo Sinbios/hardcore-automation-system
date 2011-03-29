@@ -25,16 +25,19 @@
          <div class="mcontent">
             <div class="info">
                <div id="changetempform" class="tempfield">
-                    <form action="j_security_check" method="POST" accept-charset="UTF-8"> 
+                                        <form action="../SetComponentValue" method="POST" accept-charset="UTF-8"> 
+                    	<input type="hidden" name="componentId" value="hvac"/>
                         <ul>
                             <li>
                                 <label for="j_desired_temp">Enter the desired temperature (in degrees celsius):</label>
                                 <input class="degreefield" type="text" name="desiredtemp" id="j_desired_temp" tabindex="1" maxlength="2">
                             </li>
+
                             <li class="button">
                                 <input type="submit" name="settemp" value="Set" tabindex="2">
                             </li>
                         </ul>
+                        
                     </form>
                 </div>
             </div>

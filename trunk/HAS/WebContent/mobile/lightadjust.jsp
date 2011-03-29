@@ -23,14 +23,16 @@
       <div class="mwrapper">
          <%@ include file="header.jsp" %>
          <div class="mcontent">
-         Current brightness is:<BR>
-         13%
-         <br><BR>
          Change brightness:<BR>
-         
-         <input class="bright" type="text" name="brightness" id="j_desired_bright" tabindex="1" maxlength="3" style="width:50px;height:20px;text-align:center;border:1px #009933 solid;">
-         <input type="submit" name="setbright" value="Set" tabindex="2">
-         </div>
+							<form action="../SetComponentValue" method="POST" accept-charset="UTF-8">
+								<input type="hidden" name="componentId" value="lighting"/>
+								<input type="input" id="brightness" name="brightness"/>
+								<ul>
+									<li class="button">
+										<input type="submit" name="changebrightness" value="Set" tabindex="1">
+									</li>
+								</ul>
+							</form>         </div>
 
          <%@ include file="footer.jsp" %>
       </div>
