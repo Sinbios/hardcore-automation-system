@@ -95,6 +95,10 @@ public class HVACMessageListener implements MessageListener {
 	    		DataStorage.getInstance().getoHVACData().getoHVACData().setoStatus(st);
 	    		DataStorage.getInstance().updateHVACData();
 	    	}
+	    	else if(message.contains("DesiredTemperature")){
+	    		DataStorage.getInstance().getoHVACData().getoHVACData().setnDesiredTemperature(Double.parseDouble(message.split(":")[1]));
+	    		DataStorage.getInstance().updateHVACData();
+	    	}
 	    	else if(message.contains("Disconnect"))
 	    	{
 	    		DataStorage.getInstance().getoHVACData().getoHVACData().setbConnected(false);
