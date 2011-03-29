@@ -5,6 +5,8 @@
 <% 
 	error = (String) request.getSession().getAttribute("error"); 
 %>
+
+
 <html>
 	<head>
 		<title>Home Automation System - Login</title>
@@ -17,6 +19,14 @@
 		<!--<![endif]-->
        
 		<link rel="shortcut icon" href="images/has.ico" />
+		
+<script type="text/javascript">
+<!--
+if (screen.width <= 699) {
+document.location = "mobile/home.jsp";
+}
+//-->
+</script>
 	</head>
 	
 	<body>
