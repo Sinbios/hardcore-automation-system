@@ -9,4 +9,3 @@
 <% } else { %>
 <p>Status: OFF</p>
 <% } %>
-<%=DataStorage.getInstance().getoSecurityData().getoSecurityData().getoStatus() %>
