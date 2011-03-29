@@ -47,10 +47,12 @@ public class StartComponent
 		while (quit == false) {
 			command = readUserInput.nextLine();
 			String[] parameters = null;
-			if (command != null)
+			if (command != null) {
+				if (command.equals("exit")) break;
 				parameters = command.split(":"); 
 				command = parameters[0];
-			component.handle(command, parameters);
+				component.handle(command, parameters);
+			}
 		}
 	}
 }
