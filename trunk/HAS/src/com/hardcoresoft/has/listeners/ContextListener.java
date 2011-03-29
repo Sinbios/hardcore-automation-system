@@ -29,11 +29,7 @@ public class ContextListener implements ServletContextListener {
 
 	  public void contextDestroyed(ServletContextEvent event)
 	  {
-
-	    //Output a simple message to the server's console
-	    System.out.println("Catalina says: CYA LATER MAH NIGGUH!");
 	    this.context = null;
-
 	  }
 
 
@@ -48,9 +44,5 @@ public class ContextListener implements ServletContextListener {
 	    HVACMessageListener.getInstance();
 	    LightingMessageListener.getInstance();  
 	    SecurityMessageListener.getInstance();
-	    
-	    //Output a simple message to the server's console
-	    System.out.println("Catalina says: SUP NIGGA, SERVER READY!");
-
 	  }
 }
