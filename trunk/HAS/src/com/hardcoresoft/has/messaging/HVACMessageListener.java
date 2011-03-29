@@ -6,6 +6,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import sun.jdbc.odbc.OdbcDef;
 
 import com.hardcoresoft.has.datastorage.DataStorage;
+import com.hardcoresoft.has.datastorage.HVACDataController;
+
 import com.hardcoresoft.has.datastorage.HVACStatus;
 import com.hardcoresoft.has.util.MessageUtil;
 
@@ -77,20 +79,32 @@ public class HVACMessageListener implements MessageListener {
     
     private void MessageHandler(String message)
     {
-    	if(message.equals("Connect")){
-    		DataStorage.getInstance().getoHVACData().getoHVACData().setbConnected(true);
-    		DataStorage.getInstance().updateHVACData();
+    	try
+    	{
+	    	if(message.equals("Connect")){
+	    		DataStorage.getInstance().getoHVACData().getoHVACData().setbConnected(true);
+	    		DataStorage.getInstance().updateHVACData();
+	    	}
+	    	else if(message.contains("CurrentTemperature")){
+	    		DataStorage.getInstance().getoHVACData().getoHVACData().setnCurrentTemperature(Double.parseDouble(message.split(":")[1]));
+	    		DataStorage.getInstance().updateHVACData();
+	    	}
+	    	else if(message.contains("Status")){
+	    		DataStorage.getInstance().getoHVACData();
+				HVACStatus st = HVACDataController.convertIntToHVACStatus(Integer.parseInt((message.split(":")[1])));
+	    		DataStorage.getInstance().getoHVACData().getoHVACData().setoStatus(st);
+	    		DataStorage.getInstance().updateHVACData();
+	    	}
+	    	else if(message.contains("Disconnect"))
+	    	{
+	    		DataStorage.getInstance().getoHVACData().getoHVACData().setbConnected(false);
+	    		DataStorage.getInstance().updateHVACData();
+	    	}
     	}
-    	else if(message.contains("CurrentTemperature")){
-    		System.out.println("Current Temperature is: "+message.split(":")[1]);
-    		try{
-    		HVACMessageSender.getInstance().sendMessage("hvac:test send");
-    		}
-    		catch(Exception e)
-    		{
-    			e.printStackTrace();
-    		}
+    	catch(Exception e){
+    		e.printStackTrace();
     	}
+    	
     	
     }
     
