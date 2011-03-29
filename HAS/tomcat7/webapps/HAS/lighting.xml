@@ -4,10 +4,10 @@
     <tns:connected>true</tns:connected>
     <tns:ipAddress>192.168.0.1</tns:ipAddress>
     <tns:port>21</tns:port>
-    <tns:msgQueueName>msgQueueName</tns:msgQueueName>
-    <tns:brightness>40</tns:brightness>
+    <tns:msgQueueName>LightingRXQueue</tns:msgQueueName>
+    <tns:brightness>100</tns:brightness>
     <tns:colourTemp>2451</tns:colourTemp>
-    <tns:status>true</tns:status>
+    <tns:status>false</tns:status>
     <tns:schedule>
         <tns:action>
             <tns:date>2001-12-31T12:00:00</tns:date>
