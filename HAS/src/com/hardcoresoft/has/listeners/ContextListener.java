@@ -7,6 +7,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import com.hardcoresoft.has.messaging.HVACMessageListener;
+import com.hardcoresoft.has.messaging.LightingMessageListener;
 import com.hardcoresoft.has.datastorage.DataStorage;
 
 /**
@@ -44,7 +45,7 @@ public class ContextListener implements ServletContextListener {
 		DataStorage.getInstance();
 	    this.context = event.getServletContext();
 	    HVACMessageListener.getInstance();
-	    
+	    LightingMessageListener.getInstance();  
 	    
 	    //Output a simple message to the server's console
 	    System.out.println("Catalina says: SUP NIGGA, SERVER READY!");
