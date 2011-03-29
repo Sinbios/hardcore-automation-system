@@ -4,7 +4,7 @@
     <tns:connected>true</tns:connected>
     <tns:ipAddress>192.168.0.3</tns:ipAddress>
     <tns:port>32</tns:port>
-    <tns:msgQueueName>tns:msgQueueName</tns:msgQueueName>
+    <tns:msgQueueName>SecurityRXQueue</tns:msgQueueName>
     <tns:pin>1234</tns:pin>
     <tns:status>0</tns:status>
     <tns:schedule>
