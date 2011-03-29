@@ -39,7 +39,7 @@ public class LightingComponent extends HASComponent
 	public void setbStatus(Boolean bStatus) {
 		try{
 			this.bStatus = bStatus;
-			sendMessage("Status:"+Boolean.toString(bStatus), TXQueue);
+			sendMessage("OperationalStatus:"+Boolean.toString(bStatus), TXQueue);
 		}
 		catch(Exception e){
 			e.printStackTrace();

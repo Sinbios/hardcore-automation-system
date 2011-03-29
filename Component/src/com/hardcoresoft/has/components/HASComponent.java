@@ -11,6 +11,8 @@ import javax.jms.TextMessage;
 import org.apache.activemq.*;
 import org.apache.activemq.util.JMSExceptionSupport;
 
+import com.hardcoresoft.has.components.hvac.HVACComponent;
+
 public abstract class HASComponent
 {
 
@@ -61,6 +63,12 @@ public abstract class HASComponent
 				}
 				
 				}
+			}
+		} else if (action.equals("Status")) {
+			if (this.getClass().getName().equals(HVACComponent.class.getName())) {
+				System.out.println("Current Temperature: " + ((HVACComponent)this).getCurrentTemperature());
+				System.out.println("Desired Temperature: " + ((HVACComponent)this).getDesiredTemperature());
+				System.out.println("Status: " + ((HVACComponent)this).getStatus());
 			}
 		}
 	}
