@@ -23,7 +23,7 @@
         </ul>
         <form method="post" action="Logout" name="logout">
             <input id="submit" class="submitbutton" type="image" src="images/signout.png">
-            <input type="hidden" name="logoutExitPage" value="login.html">
+            <input type="hidden" name="logoutExitPage" value="login.jsp">
         </form>
     </div>
 </div>

@@ -8,7 +8,7 @@
 	boolean isLoggedIn = UserSecurity.authenticationCheck(request);
 	if (!isLoggedIn) {
 %>
-<%@ include file="login.html" %>
+<%@ include file="login.jsp" %>
 <% } else { %>
 <%! UserDataNode user = null; %>
 <%! String selected = "settings"; %>

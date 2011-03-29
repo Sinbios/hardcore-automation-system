@@ -8,7 +8,7 @@
 	boolean isLoggedIn = UserSecurity.authenticationCheck(request);
 	if (!isLoggedIn) {
 %>
-<%@ include file="login.html" %>
+<%@ include file="login.jsp" %>
 <% } else { %>
 <%! UserDataNode user = null; %>
 <%! String selected = "components"; %>
@@ -48,11 +48,11 @@
             <div id="maincontainer">
                 <table id="simpletable">
                     <tr>
-                        <td><a href="hvac.html"><img src="images/hvac.png" /></a></td>
-                        <td><a href="security.html"><img src="images/security.png" /></a></td>
+                        <td><a href="hvac.jsp"><img src="images/hvac.png" /></a></td>
+                        <td><a href="security.jsp"><img src="images/security.png" /></a></td>
                     </tr>
                     <tr>
-                        <td><a href="lighting.html"><img src="images/lighting.png" /></a></td>
+                        <td><a href="lighting.jsp"><img src="images/lighting.png" /></a></td>
                         <td></td>
                     </tr>
                 </table>
