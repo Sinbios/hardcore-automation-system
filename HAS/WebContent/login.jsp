@@ -47,7 +47,7 @@
          }();
 
          if(mobile.detect()){
-            window.location = "/mobile/login.jsp";
+            window.location = "mobile/login.jsp";
          }
 
    </script>
