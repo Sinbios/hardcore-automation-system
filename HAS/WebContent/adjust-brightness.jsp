@@ -2,6 +2,7 @@
 <%@ page import="com.hardcoresoft.has.security.UserSecurity" %>
 <%@ page import="com.hardcoresoft.has.datastorage.UserPermission" %>
 <%@ page import="com.hardcoresoft.has.datastorage.UserDataNode" %>
+<%@ page import="com.hardcoresoft.has.datastorage.DataStorage" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <% 
@@ -54,12 +55,16 @@
 				range: "min",
 				min: 0,
 				max: 100,
-				value: 0,
+				value: <%=DataStorage.getInstance().getoLightingData().getoLightingData().getnBrightness() %>,
 				slide: function( event, ui ) {
-					$( "#amount" ).val( ui.value );
+					$("#amount" ).val( ui.value );
 					$("#amount").text( ui.value+"%" );
+					$("#brightness").val( ui.value );
 				}
 			});
+			$("#amount" ).val( <%=DataStorage.getInstance().getoLightingData().getoLightingData().getnBrightness() %> );
+			$("#amount").text( <%=DataStorage.getInstance().getoLightingData().getoLightingData().getnBrightness() %>+"%" );
+			$("#brightness").val( <%=DataStorage.getInstance().getoLightingData().getoLightingData().getnBrightness() %> );
 		});
 		</script>
 		<style>	
@@ -74,18 +79,15 @@
         <div id="wrapper">
         <%@ include file="header.jsp" %>
             <div id="maincontainer">
-            
-                <div id="status">
-                    <p>Status information regarding the component goes here</p>
-                </div>
-            				
                 <div class="brightnessfield">
 					    <div id="brightnesscontainer">
 						<label for="amount">Desired Brightness Level:</label>
-                  <div id="amount"></div>
+                  		<div id="amount"></div>
 						<div id="slider"></div>
 						<div id="slidersubmitbutton">
-							<form action="j_security_check" method="POST" accept-charset="UTF-8"> 
+							<form action="SetComponentValue" method="POST" accept-charset="UTF-8">
+								<input type="hidden" name="componentId" value="lighting"/>
+								<input type="hidden" id="brightness" name="brightness"/>
 								<ul>
 									<li class="button">
 										<input type="submit" name="changebrightness" value="Set" tabindex="1">

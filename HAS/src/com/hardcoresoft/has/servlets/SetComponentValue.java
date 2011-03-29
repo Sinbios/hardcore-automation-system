@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.hardcoresoft.has.datastorage.DataStorage;
 import com.hardcoresoft.has.datastorage.HVACStatus;
 import com.hardcoresoft.has.messaging.HVACMessageSender;
+import com.hardcoresoft.has.messaging.LightingMessageSender;
 
 /**
  * Servlet implementation class SetComponentValue
@@ -31,7 +32,6 @@ public class SetComponentValue extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		setComponentValue(request, response);
-		response.sendRedirect("hvac.jsp");
 	}
 
 	/**
@@ -39,26 +39,48 @@ public class SetComponentValue extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		setComponentValue(request, response);
-		response.sendRedirect("hvac.jsp");
+		
 	}
 	
-	private static void setComponentValue(HttpServletRequest request, HttpServletResponse response) {
+	private void setComponentValue(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String componentId = request.getParameter("componentId");
 		if (componentId.equals("hvac")) {
 			String desiredtemp = request.getParameter("desiredtemp");
-			if (desiredtemp != null && !desiredtemp.equals(""))
+			if (desiredtemp != null && !desiredtemp.equals("")) {
 				HVACMessageSender.getInstance().sendDesiredTemperature(Double.parseDouble(desiredtemp));
+			}
 			String temp = request.getParameter("temp");
-			if (temp != null && temp.equals("off"))
+			if (temp != null && temp.equals("off")) {
 				HVACMessageSender.getInstance().sendStatus(HVACStatus.OFF);
+			}
 			String fan = request.getParameter("fan");
 			if (fan != null && fan.equals("toggle")) {
-				if (DataStorage.getInstance().getoHVACData().getoHVACData().getoStatus() != HVACStatus.FANON)
+				if (DataStorage.getInstance().getoHVACData().getoHVACData().getoStatus() != HVACStatus.FANON) {
 					HVACMessageSender.getInstance().sendStatus(HVACStatus.FANON);
-				else
+				} else {
 					HVACMessageSender.getInstance().sendStatus(HVACStatus.OFF);
+				}
 			}
+			response.sendRedirect("hvac.jsp");
+		} else if (componentId.equals("lighting")) {
+			String status = request.getParameter("toggle");
+			if (status != null && !status.equals("")) {
+				if (DataStorage.getInstance().getoLightingData().getoLightingData().getbOperationalStatus() == false) {
+					LightingMessageSender.getInstance().sendOperationalStatus(true);
+				} else {
+					LightingMessageSender.getInstance().sendOperationalStatus(false);
+				}
+			}
+			String brightness = request.getParameter("brightness");
+			if (brightness != null && !brightness.equals("")) {
+				LightingMessageSender.getInstance().sendBrightness(Integer.valueOf(brightness));
+			}
+			String hex = request.getParameter("hex");
+			if (hex != null && !hex.equals("")) {
+				Integer color = Integer.parseInt(hex, 16);
+				LightingMessageSender.getInstance().sendColourTemp(Integer.valueOf(color));
+			}
+			response.sendRedirect("lighting.jsp");
 		}
 	}
-
 }

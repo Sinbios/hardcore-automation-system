@@ -14,9 +14,6 @@
 <% } else { %>
 <%! UserDataNode user = null; %>
 <%! String selected = "components"; %>
-<%! String currentTemp = String.valueOf(DataStorage.getInstance().getoHVACData().getoHVACData().getnCurrentTemperature()); %>
-<%! String desiredTemp = String.valueOf(DataStorage.getInstance().getoHVACData().getoHVACData().getnDesiredTemperature()); %>
-<%! HVACStatus status = DataStorage.getInstance().getoHVACData().getoHVACData().getoStatus(); %>
 <% user = (UserDataNode) request.getSession().getAttribute("user"); %>
 
 <html>
@@ -33,6 +30,7 @@
 		<link rel="shortcut icon" href="images/has.ico" />
 		
 		<script src="javascript/jquery-1.5.1.min.js" type="text/javascript"></script>
+		<script src="javascript/jquery.timers.js" type="text/javascript"></script>
 		<script type="text/javascript" charset="utf-8">
             $(document).ready(function(){
                 $('#submit').hover(
@@ -43,6 +41,14 @@
                         $(this).attr({ src : 'images/signout.png'});
                     }
                 );
+                $.get('hvacstatus.jsp', function(data) {
+               		$('#status').html(data);
+               	});
+                $(document).everyTime(1000, 'controlled', function() {
+                	$.get('hvacstatus.jsp', function(data) {
+                   		$('#status').html(data);
+                   	});
+				});
             });
         </script>
 		
@@ -52,23 +58,8 @@
         <div id="wrapper">
         	<%@ include file="header.jsp" %>
             <div id="maincontainer">
-                <div id="status">
-                	<%=status %>
-                	<%=HVACStatus.ACCON %>
-                	<%=HVACStatus.HEATON %>
-                	<%=HVACStatus.FANON %>
-                	<%=HVACStatus.OFF %>
-                    <p>Current Temperature: <%=currentTemp %></p>
-                    <p>Desired Temperature: <%=desiredTemp %></p>
-                    <% if (status == HVACStatus.ACCON) { %>
-                    	<p>Status: AC ON</p>
-                    <% } else if (status == HVACStatus.HEATON) { %>
-                    	<p>Status: Heat ON</p>
-                    <% } else if (status == HVACStatus.FANON) { %>
-                    	<p>Status: Fan ON</p>
-                    <% } else if (status == HVACStatus.OFF) { %>
-                    	<p>Status: OFF</p>
-                   	<% } %>
+                <div id="status" name="status">
+                    
                 </div>
             
                 <table>

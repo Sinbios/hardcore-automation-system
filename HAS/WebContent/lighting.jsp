@@ -24,6 +24,7 @@
 		<!--<![endif]-->
 		<link rel="shortcut icon" href="images/has.ico" />
 		<script src="javascript/jquery-1.5.1.min.js" type="text/javascript"></script>
+		<script src="javascript/jquery.timers.js" type="text/javascript"></script>
 		<script type="text/javascript" charset="utf-8">
             $(document).ready(function(){
                 $('#submit').hover(
@@ -34,6 +35,14 @@
                         $(this).attr({ src : 'images/signout.png'});
                     }
                 );
+                $.get('lightingstatus.jsp', function(data) {
+               		$('#status').html(data);
+               	});
+                $(document).everyTime(1000, 'controlled', function() {
+                	$.get('lightingstatus.jsp', function(data) {
+                   		$('#status').html(data);
+                   	});
+				});
             });
         </script>
 		
@@ -43,9 +52,13 @@
         <div id="wrapper">
             <%@ include file="header.jsp" %>
             <div id="maincontainer">
-                <table id="simpletable">
+                <div id="status">
+                    <p>Status information regarding the component goes here</p>
+                </div>
+            
+                <table>
                     <tr>
-                        <td><a href="lighting.jsp"><img src="images/lights-onoff.png" /></a></td>
+                        <td><a href="SetComponentValue?componentId=lighting&toggle=true"><img src="images/lights-onoff.png" /></a></td>
                         <td><a href="adjust-brightness.jsp"><img src="images/adjust-brightness.png" /></a></td>
                     </tr>
                     <tr>
