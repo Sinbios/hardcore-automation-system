@@ -21,21 +21,49 @@
 		<link rel="shortcut icon" href="images/has.ico" />
 		
 <script type="text/javascript">
-<!--
-if (screen.width <= 699) {
-document.location = "mobile/home.jsp";
-}
-//-->
-</script>
+
+         var mobile = function(){
+	         return {
+		         detect:function(){
+			         var uagent = navigator.userAgent.toLowerCase(); 
+			         var list = this.mobiles;
+			         var ismobile = false;
+			         for(var d=0;d<list.length;d+=1){
+				         if(uagent.indexOf(list[d])!=-1){
+					         ismobile = true;
+				         }
+			         }
+			         return ismobile;
+		         },
+		         mobiles:[
+			         "midp","240x320","blackberry","netfront","nokia","panasonic",
+			         "portalmmm","sharp","sie-","sonyericsson","symbian",
+			         "windows ce","benq","mda","mot-","opera mini",
+			         "philips","pocket pc","sagem","samsung","sda",
+			         "sgh-","vodafone","xda","palm","iphone",
+			         "ipod","android"
+		         ]
+	         };
+         }();
+
+         if(mobile.detect()){
+            window.location = "mobile";
+         }else{
+            window.location = "desktop";
+         }
+
+   </script>
 	</head>
 	
 	<body>
 		<div id="loginwrapper">
 			<div id="loginlogocontainer"><img src="images/has-logo.png" /></div>
 			<div id="loginformcontainer">
+				<div id="errormessage">
 				<% if ("true".equals(request.getParameter("error"))) { %>
 					Invalid User ID or Password.
 				<%} %>
+				</div>
 				<form method="POST" action="Login">
 				<!-- action="http://YOUR_DOMAIN_HERE:[portnumber]/[locationofloginscript]" -->
 					<form id="loginform">
