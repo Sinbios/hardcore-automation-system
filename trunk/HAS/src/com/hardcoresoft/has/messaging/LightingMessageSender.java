@@ -11,30 +11,32 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import sun.jdbc.odbc.OdbcDef;
+
 import com.hardcoresoft.has.datastorage.DataStorage;
 import com.hardcoresoft.has.datastorage.HVACStatus;
 
-public class HVACMessageSender {
+public class LightingMessageSender {
 	
 	protected static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
-	protected static String subject = DataStorage.getInstance().getoHVACData().getoHVACData().getsMsgQueueName();
+	protected static String subject = DataStorage.getInstance().getoLightingData().getoLightingData().getsMsgQueueName();
 	
-	private static HVACMessageSender handler = new HVACMessageSender();
+	private static LightingMessageSender handler = new LightingMessageSender();
 	
-	private HVACMessageSender() {
+	private LightingMessageSender() {
 		
 	}
 	
-	public static HVACMessageSender getInstance() {
+	public static LightingMessageSender getInstance() {
 		return handler;
 	}
 	
-	/**
-	 * Function: public void sendMessage(
-	 * Parameters: int value - integer to convert.
-	 * Description: Converts an integer to an SecurityMode enum. 
-	 */
 	
+	/**
+	 * Function: public void sendMessage
+	 * Parameters: string body - message content to send.
+	 * Description: Sends a string message to the Lighting component.
+	 */
 	public void sendMessage(String body) throws JMSException {
 		ConnectionFactory connectionFactory =
             new ActiveMQConnectionFactory(url);
@@ -61,23 +63,47 @@ public class HVACMessageSender {
 
         // Here we are sending the message!
         producer.send(message);
-        System.out.println("Sent message to HVAC: '" + message.getText() + "'");
+        System.out.println("Sent message to Lighting: '" + message.getText() + "'");
 
         connection.close();
 	}
 	
-	public void sendDesiredTemperature(double temp){
+	/**
+	 * Function: public void sendBrightness(int brightness)
+	 * Parameters: int brightness - brightness value to send.
+	 * Description: Sends a brightness message to the Lighting component.
+	 */
+	public void sendBrightness(int brightness){
 		try{
-			sendMessage("DesiredTemperature:"+Double.toString(temp));
+			sendMessage("Brightness:"+Double.toString(brightness));
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	public void sendStatus(HVACStatus status){
+	/**
+	 * Function: public void sendOperationalStatus(Boolean status)
+	 * Parameters: Boolean status - operational status to send.
+	 * Description: Sends a operational status message to the Lighting component. 
+	 */
+	public void sendOperationalStatus(Boolean status){
 		try{
-			sendMessage("Status:"+Integer.toString(status.ordinal()));
+			sendMessage("OperationalStatus:"+Boolean.toString(status));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Function: public void sendColourTemp(int colourtemp)
+	 * Parameters: int colourtemp - colourtemp value to send.
+	 * Description: Sends a colour temp message to the Lighting component.
+	 */
+	public void sendColourTemp(int colourtemp){
+		try{
+			sendMessage("ColourTemperature:"+Integer.toString(colourtemp));
 		}
 		catch(Exception e){
 			e.printStackTrace();
