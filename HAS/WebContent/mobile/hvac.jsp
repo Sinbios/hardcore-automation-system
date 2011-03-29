@@ -18,16 +18,33 @@
 		<title>Home Automation System - HVAC</title>
 		<link rel="stylesheet" type="text/css" href="css/mstyle.css" />
 		<meta name="viewport" content="width=320" />
+		
+		
+			<script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                $.get('../hvacstatus.jsp', function(data) {
+               		$('#status').html(data);
+               	});
+                $(document).everyTime(1000, 'controlled', function() {
+                	$.get('../hvacstatus.jsp', function(data) {
+                   		$('#status').html(data);
+                   	});
+				});
+            });
+        </script>
+	
+		
 	</head>
 	<body>
       <div class="mwrapper">
                  <%@ include file="header.jsp" %>
          <div class="mcontent">
-            <div class="info">
-               The temperature is on while the tempertaure is at lol degrees.
-            </div>
+                         <div id="status" name="status">
+                    
+                </div>
+            
             <div class="div1">
-               <a href="temppower.jsp"><img src="img/mtemppower.png"></a></div>
+               <a href="../SetComponentValue?componentId=hvac&temp=off"><img src="img/mtemppower.png"></a></div>
             </div>
             <div class="div2">
                <a href="tempset.jsp"><img src="img/mtempset.png"></a>
@@ -36,7 +53,7 @@
                <a href="tempsched.jsp"><img src="img/mtempsched.png"></a>
             </div>
             <div class="div2">
-               <a href="fanpower.jsp"><img src="img/mfanpower.png"></a>
+               <a href="../SetComponentValue?componentId=hvac&fan=toggle"><img src="img/mfanpower.png"></a>
             </div>
          </div>
 

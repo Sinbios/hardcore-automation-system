@@ -23,14 +23,18 @@
       <div class="mwrapper">
          <%@ include file="header.jsp" %>
          <div class="mcontent">
-         Current colour temperature is:<BR>
-         <font color="#123dfe">#123dfe</font>
-         <br><BR>
+
          Change colour temperature:<BR>
-        <input class="temp" type="text" name="temperature" id="j_desired_temp" tabindex="1" maxlength="7" style="width:70px;height:20px;text-align:center;border:1px #009933 solid;">
-         <li></li>
-                                <input type="submit" name="settemp" value="Set" tabindex="2">
-         </div>
+        <form action="../SetComponentValue" method="POST" accept-charset="UTF-8"> 
+							<input type="hidden" name="componentId" value="lighting"/>
+							<input type="input" id="hex" name="hex"/>
+							<ul>
+								<li class="button">
+									<input type="submit" name="changecolourtemp" value="Set" tabindex="1">
+									<input type="submit" name="clearcolourtemp" value="Clear" tabindex="2">
+								</li>
+							</ul>
+						</form>         </div>
 
          <%@ include file="footer.jsp" %>
       </div>
