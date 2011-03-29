@@ -4,25 +4,22 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import com.hardcoresoft.has.datastorage.DataStorage;
-import com.hardcoresoft.has.datastorage.HVACDataController;
-
-import com.hardcoresoft.has.datastorage.HVACStatus;
-import com.hardcoresoft.has.util.MessageUtil;
-
+import com.hardcoresoft.has.datastorage.SecurityMode;
+import com.hardcoresoft.has.datastorage.SecurityDataController;
+import com.hardcoresoft.has.messaging.SecurityMessageSender;
 
 import javax.jms.*;
 
-public class HVACMessageListener implements MessageListener {
-	private static HVACMessageListener listener = new HVACMessageListener();
+public class SecurityMessageListener implements MessageListener {
+	private static SecurityMessageListener listener = new SecurityMessageListener();
     private static int ackMode = Session.AUTO_ACKNOWLEDGE;
-    private static String messageQueueName = MessageUtil.getQueueName();
 
     private Session session;
     private boolean transacted = false;
     private MessageProducer replyProducer;
     
-    public HVACMessageListener() {
-        this.setupMessageQueueConsumer("HVACQueue");
+    public SecurityMessageListener() {
+        this.setupMessageQueueConsumer("SecurityQueue");
     }
 
     private void setupMessageQueueConsumer(String queuename) {
@@ -67,7 +64,7 @@ public class HVACMessageListener implements MessageListener {
             //Send the response to the Destination specified by the JMSReplyTo field of the received message,
             //this is presumably a temporary queue created by the client
             
-            System.out.println("Server received message. MessageHandler would do work here.");
+            System.out.println("Server received message from the Security component.");
             // Commenting this out for now since I don't want to reply.
             //this.replyProducer.send(message.getJMSReplyTo(), response);
         } catch (JMSException e) {
@@ -80,27 +77,26 @@ public class HVACMessageListener implements MessageListener {
     	try
     	{
 	    	if(message.equals("Connect")){
-	    		DataStorage.getInstance().getoHVACData().getoHVACData().setbConnected(true);
-	    		DataStorage.getInstance().updateHVACData();
-	    	}
-	    	else if(message.contains("CurrentTemperature")){
-	    		DataStorage.getInstance().getoHVACData().getoHVACData().setnCurrentTemperature(Double.parseDouble(message.split(":")[1]));
-	    		DataStorage.getInstance().updateHVACData();
+	    		SecurityMessageSender.getInstance().sendNewPin(DataStorage.getInstance().getoSecurityData().getoSecurityData().getnPin());
+	    		DataStorage.getInstance().getoSecurityData().getoSecurityData().setbConnected(true);
+	    		DataStorage.getInstance().updateSecurityData();
+	    		//Send the PIN to the component.
+	    		SecurityMessageSender.getInstance().sendNewPin(DataStorage.getInstance().getoSecurityData().getoSecurityData().getnPin());
 	    	}
 	    	else if(message.contains("Status")){
-	    		DataStorage.getInstance().getoHVACData();
-				HVACStatus st = HVACDataController.convertIntToHVACStatus(Integer.parseInt((message.split(":")[1])));
-	    		DataStorage.getInstance().getoHVACData().getoHVACData().setoStatus(st);
-	    		DataStorage.getInstance().updateHVACData();
+	    		SecurityMode sm = SecurityDataController.convertIntToSecurityStatus(Integer.parseInt(message.split(":")[1]));
+	    		DataStorage.getInstance().getoSecurityData().getoSecurityData().setoStatus(sm);
+	    		DataStorage.getInstance().updateSecurityData();
 	    	}
-	    	else if(message.contains("DesiredTemperature")){
-	    		DataStorage.getInstance().getoHVACData().getoHVACData().setnDesiredTemperature(Double.parseDouble(message.split(":")[1]));
-	    		DataStorage.getInstance().updateHVACData();
+	    	else if(message.contains("NewPin")){
+	    		DataStorage.getInstance().getoSecurityData().getoSecurityData().setnPin(Integer.parseInt(message.split(":")[1]));
+	    		DataStorage.getInstance().updateSecurityData();
+	    		
 	    	}
 	    	else if(message.contains("Disconnect"))
 	    	{
-	    		DataStorage.getInstance().getoHVACData().getoHVACData().setbConnected(false);
-	    		DataStorage.getInstance().updateHVACData();
+	    		DataStorage.getInstance().getoSecurityData().getoSecurityData().setbConnected(false);
+	    		DataStorage.getInstance().updateSecurityData();
 	    	}
     	}
     	catch(Exception e){
