@@ -75,7 +75,7 @@ public class LightingMessageSender {
 	 */
 	public void sendBrightness(int brightness){
 		try{
-			sendMessage("Brightness:"+Double.toString(brightness));
+			sendMessage("Brightness:"+Integer.toString(brightness));
 		}
 		catch(Exception e){
 			e.printStackTrace();

@@ -2,6 +2,7 @@
 <%@ page import="com.hardcoresoft.has.security.UserSecurity" %>
 <%@ page import="com.hardcoresoft.has.datastorage.UserPermission" %>
 <%@ page import="com.hardcoresoft.has.datastorage.UserDataNode" %>
+<%@ page import="com.hardcoresoft.has.datastorage.DataStorage" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <% 
@@ -70,6 +71,15 @@
 	#blue .ui-slider-handle { border-color: #729fcf; }
 	#demo-frame > div.demo { padding: 10px !important; };
 	</style>
+	
+	<% 
+		String hex = Integer.toHexString(DataStorage.getInstance().getoLightingData().getoLightingData().getnColourTemp());
+		hex = "000000" + hex;
+		hex = hex.substring(hex.length() - 6, hex.length());
+		Integer R = Integer.valueOf(hex.substring(0, 2), 16);
+		Integer G = Integer.valueOf(hex.substring(2, 4), 16);
+		Integer B = Integer.valueOf(hex.substring(4, 6), 16);
+	%>
 	<script>
 	function hexFromRGB(r, g, b) {
 		var hex = [
@@ -89,6 +99,7 @@
 			green = $( "#green" ).slider( "value" ),
 			blue = $( "#blue" ).slider( "value" ),
 			hex = hexFromRGB( red, green, blue );
+		$("#hex").val(hex);
 		$( "#swatch" ).css( "background-color", "#" + hex );
 	}
 	$(function() {
@@ -100,9 +111,9 @@
 			slide: refreshSwatch,
 			change: refreshSwatch
 		});
-		$( "#red" ).slider( "value", 255 );
-		$( "#green" ).slider( "value", 140 );
-		$( "#blue" ).slider( "value", 60 );
+		$( "#red" ).slider( "value", <%=R %> );
+		$( "#green" ).slider( "value", <%=G %> );
+		$( "#blue" ).slider( "value", <%=B %> );
 	});
 	</script>        
         
@@ -112,11 +123,6 @@
         <div id="wrapper">
 		<%@ include file="header.jsp" %>
             <div id="maincontainer">
-            
-                <div id="status">
-                    <p>Status information regarding the component goes here</p>
-                </div>
-                
 				<div id="rgbwrapper">
 					<div id="sliderdescription">
 						Use the RGB sliders to change the colour temperature:
@@ -132,7 +138,9 @@
 					</div>
 					
 					<div id="slidersubmitbutton">
-						<form action="j_security_check" method="POST" accept-charset="UTF-8"> 
+						<form action="SetComponentValue" method="POST" accept-charset="UTF-8"> 
+							<input type="hidden" name="componentId" value="lighting"/>
+							<input type="hidden" id="hex" name="hex"/>
 							<ul>
 								<li class="button">
 									<input type="submit" name="changecolourtemp" value="Set" tabindex="1">

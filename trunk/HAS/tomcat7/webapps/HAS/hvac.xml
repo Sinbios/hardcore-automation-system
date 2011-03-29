@@ -6,8 +6,8 @@
     <tns:port>21</tns:port>
     <tns:msgQueueName>HVACRXQueue</tns:msgQueueName>
     <tns:currentTemperature>20.0</tns:currentTemperature>
-    <tns:desiredTemperature>40.0</tns:desiredTemperature>
-    <tns:status>0</tns:status>
+    <tns:desiredTemperature>30.0</tns:desiredTemperature>
+    <tns:status>1</tns:status>
     <tns:schedule>
         <tns:action>
             <tns:date>2001-12-31T12:00:00</tns:date>
