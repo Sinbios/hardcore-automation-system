@@ -20,10 +20,10 @@ public class HVACComponent extends HASComponent
 			desiredTemperature = 20; 
 			ComponentMessageListener oRef = (ComponentMessageListener) ComponentMessageListener.getInstance();
 			oRef.init(RXQueue);
-			sendMessage("Connect","HVACQueue");
+			sendMessage("Connect",TXQueue);
 			//Set current temperature to 20 by default. 
-			sendMessage("CurrentTemperature:"+Double.toString(currentTemperature),"HVACQueue");
-			sendMessage("Status:0","HVACQueue");
+			sendMessage("CurrentTemperature:"+Double.toString(currentTemperature),TXQueue);
+			sendMessage("Status:0",TXQueue);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -43,14 +43,14 @@ public class HVACComponent extends HASComponent
 		try{
 			this.currentTemperature = currentTemperature;
 			if(this.desiredTemperature > this.currentTemperature){
-				sendMessage("Status:1", "HVACQueue");
+				sendMessage("Status:1", TXQueue);
 			}
 			else if(this.desiredTemperature < this.currentTemperature){
-				sendMessage("Status:2", "HVACQueue");
+				sendMessage("Status:2", TXQueue);
 			}
 			else
 			{
-				sendMessage("Status:0", "HVACQueue");
+				sendMessage("Status:0", TXQueue);
 			}
 		}
 		catch(Exception e)
@@ -70,15 +70,16 @@ public class HVACComponent extends HASComponent
 	public void setDesiredTemperature(double desiredTemperature) {
 		try{
 			this.desiredTemperature = desiredTemperature;
+			sendMessage("DesiredTemperature:"+Double.toString(desiredTemperature),TXQueue);
 			if(this.desiredTemperature > this.currentTemperature){
-				sendMessage("Status:1", "HVACQueue");
+				sendMessage("Status:1", TXQueue);
 			}
 			else if(this.desiredTemperature < this.currentTemperature){
-				sendMessage("Status:2", "HVACQueue");
+				sendMessage("Status:2", TXQueue);
 			}
 			else
 			{
-				sendMessage("Status:0", "HVACQueue");
+				sendMessage("Status:0", TXQueue);
 			}
 		}
 		catch(Exception e){
@@ -93,7 +94,7 @@ public class HVACComponent extends HASComponent
 	public void setStatus(int status) {
 		try{
 			this.status = status;
-			sendMessage("Status:"+Integer.toString(status), "HVACQueue");
+			sendMessage("Status:"+Integer.toString(status), TXQueue);
 		}
 		catch(Exception e){
 			e.printStackTrace();

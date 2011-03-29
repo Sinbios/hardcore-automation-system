@@ -77,7 +77,7 @@ public class ComponentMessageListener  implements MessageListener {
             //Send the response to the Destination specified by the JMSReplyTo field of the received message,
             //this is presumably a temporary queue created by the client
             
-            System.out.println("Component received message. MessageHandler would do work here.");
+            //System.out.println("Component received message. MessageHandler would do work here.");
             // Commenting this out for now since I don't want to reply.
             //this.replyProducer.send(message.getJMSReplyTo(), response);
         } catch (JMSException e) {
