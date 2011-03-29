@@ -1,170 +1,90 @@
 package com.hardcoresoft.has.components.lighting;
 
-import java.util.*;
+import com.hardcoresoft.has.components.ComponentMessageListener;
 import com.hardcoresoft.has.components.HASComponent;
-import com.hardcoresoft.has.exceptions.*;
 
-public class LightingComponent extends HASComponent implements ILightingComponent
+public class LightingComponent extends HASComponent 
 {
+	Boolean bStatus = false;
+	int nColourTemp = 100;
+	int nBrightness= 100;
+	
+	
+	protected void Initialize()
+	{
+		try{
+			RXQueue = "LightingRXQueue";
+			TXQueue = "LightingQueue";
+			bStatus = false;
+			nColourTemp = 100;
+			nBrightness= 100;
+			ComponentMessageListener oRef = (ComponentMessageListener) ComponentMessageListener.getInstance();
+			oRef.init(RXQueue);
+			sendMessage("Connect",TXQueue);
+			//Set current temperature to 20 by default. 
+			sendMessage("Brightness:"+Integer.toString(nBrightness),TXQueue);
+			sendMessage("OperationalStatus:"+Boolean.toString(bStatus),TXQueue);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		// Get initial status and desired temp
+	}
 
-	HashMap<String, Light> lights = new HashMap<String, Light>();
+
+	public Boolean getbStatus() {
+		return bStatus;
+	}
+
+	public void setbStatus(Boolean bStatus) {
+		try{
+			this.bStatus = bStatus;
+			sendMessage("Status:"+Boolean.toString(bStatus), TXQueue);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
+
+	public int getnColourTemp() {
+		return nColourTemp;
+	}
+	
+	public void setnColourTemp(int nColourTemp) {
+		try{
+			this.nColourTemp = nColourTemp;
+			sendMessage("ColourTemperature:"+Integer.toString(nColourTemp), TXQueue);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
+
+	public int getnBrightness() {
+		return nBrightness;
+	}
+
+	public void setnBrightness(int nBrightness) {
+		try{
+			this.nBrightness = nBrightness;
+			sendMessage("Brightness:"+Integer.toString(nBrightness), TXQueue);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
 
 	@Override
 	protected void MessageHandler(String msg) throws Exception
 	{
-		if (msg.startsWith("turnLightsOn"))
-		{
-			sendMessage(msg + ":" + turnLightsOn());
+		if (msg.contains("OperationalStatus")){
+			setbStatus(Boolean.parseBoolean(msg.split(":")[1]));
 		}
-		else if (msg.startsWith("turnLightsOff"))
-		{
-			sendMessage(msg + ":" + turnLightsOff());
+		else if(msg.contains("Brightness")){
+			setnBrightness(Integer.parseInt(msg.split(":")[1]));
 		}
-		else if (msg.startsWith("setBrightness"))
-		{
-			try
-			{
-				int brightness = Integer.parseInt(msg.substring(msg.indexOf("(") + 1, msg.indexOf(")")));
-				sendMessage(msg + ":" + setBrightness(brightness));
-			}
-			catch (Exception ex)
-			{
-				LogException(new Exception(msg + ":Does not contain a valid brightness parameter"));
-				sendMessage(msg + ":Does not contain a valid brightness parameter");
-			}
+		else if(msg.contains("ColourTemperature")){
+			setnColourTemp(Integer.parseInt(msg.split(":")[1]));
 		}
-		else if (msg.startsWith("setTemperature"))
-		{
-			try
-			{
-				int temp = Integer.parseInt(msg.substring(msg.indexOf("(") + 1, msg.indexOf(")")));
-				sendMessage(msg + ":" + setTemperature(temp));
-			}
-			catch (Exception ex)
-			{
-				LogException(new Exception(msg + ":Does not contain a valid temperature parameter"));
-				sendMessage(msg + ":Does not contain a valid temperature parameter");
-			}
-		}
-		else if (msg.startsWith("addLight"))
-		{
-			try
-			{
-				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
-				addLight(name);
-				sendMessage(msg + ":" + true);
-			}
-			catch (Exception ex)
-			{
-				LogException(ex);
-				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
-				sendMessage(msg + ":Does not contain a valid name parameter");
-			}
-		}
-		else if (msg.startsWith("removeLight"))
-		{
-			try
-			{
-				String name = msg.substring(msg.indexOf("(") + 1, msg.indexOf(")"));
-				sendMessage(msg + ":" + removeLight(name));
-			}
-			catch (Exception ex)
-			{
-				LogException(ex);
-				LogException(new Exception(msg + ":Does not contain a valid name parameter"));
-				sendMessage(msg + ":Does not contain a valid name parameter");
-			}
-		}
-	}
-
-	protected void Initialize()
-	{
-
-	}
-
-	public boolean turnLightsOn()
-	{
-		boolean success = true;
-		for (Light light : lights.values())
-		{
-			try
-			{
-				light.turnLightOn();
-			}
-			catch (Exception ex)
-			{
-				success = false;
-				LogException(ex);
-			}
-		}
-		return success;
-	}
-
-	public boolean turnLightsOff()
-	{
-		boolean success = true;
-		for (Light light : lights.values())
-		{
-			try
-			{
-				light.turnLightOff();
-			}
-			catch (Exception ex)
-			{
-				success = false;
-				LogException(ex);
-			}
-		}
-		return success;
-	}
-
-	public boolean setBrightness(int brightness)
-	{
-		boolean success = true;
-		for (Light light : lights.values())
-		{
-			try
-			{
-				light.setBrightness(brightness);
-			}
-			catch (Exception ex)
-			{
-				success = false;
-				LogException(ex);
-			}
-		}
-		return success;
-	}
-
-	public boolean setTemperature(int temp)
-	{
-		boolean success = true;
-		for (Light light : lights.values())
-		{
-			try
-			{
-				light.setTemperature(temp);
-			}
-			catch (Exception ex)
-			{
-				success = false;
-				LogException(ex);
-			}
-		}
-		return success;
-	}
-
-	public void addLight(String name) throws NameConflictException
-	{
-		if (lights.containsKey(name))
-		{
-			throw new NameConflictException(name);
-		}
-		lights.put(name, new Light(false, 0, 0));
-	}
-
-	public boolean removeLight(String name)
-	{
-		return (lights.remove(name) == null);
 	}
 }
