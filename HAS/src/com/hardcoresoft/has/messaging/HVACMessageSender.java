@@ -11,7 +11,10 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import sun.jdbc.odbc.OdbcDef;
+
 import com.hardcoresoft.has.datastorage.DataStorage;
+import com.hardcoresoft.has.datastorage.HVACStatus;
 
 public class HVACMessageSender {
 	
@@ -63,6 +66,24 @@ public class HVACMessageSender {
         System.out.println("Sent message to HVAC: '" + message.getText() + "'");
 
         connection.close();
+	}
+	
+	public void sendDesiredTemperature(double temp){
+		try{
+			sendMessage("DesiredTemperature:"+Double.toString(temp));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendStatus(HVACStatus status){
+		try{
+			sendMessage("Status:"+Integer.toString(status.ordinal()));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 }
