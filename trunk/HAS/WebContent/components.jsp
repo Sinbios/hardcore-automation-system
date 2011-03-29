@@ -17,6 +17,36 @@
 <% Boolean hvacConnected = DataStorage.getInstance().getoHVACData().getoHVACData().getbConnected(); %>
 <% Boolean lightingConnected = DataStorage.getInstance().getoLightingData().getoLightingData().getbConnected(); %>
 <% Boolean securityConnected = DataStorage.getInstance().getoSecurityData().getoSecurityData().getbConnected(); %>
+<% String hvacSrc = "";%>
+<% String liteSrc = "";%>
+<% String secSrc = "";%>
+<% if ( hvacConnected )
+	{
+		hvacSrc = "images/hvac.png";
+	}
+	else
+	{
+		hvacSrc = "images/hvac-na.png";
+	}
+%>
+<% if ( lightingConnected )
+	{
+		liteSrc = "images/lighting.png";
+	}
+	else
+	{
+		liteSrc = "images/lighting-na.png";
+	}
+%>
+<% if ( securityConnected )
+	{
+		secSrc = "images/security.png";
+	}
+	else
+	{
+		secSrc = "images/security-na.png";
+	}
+%>
 <html>
 	<head>
 		<title>Home Automation System - My Components</title>
@@ -52,11 +82,11 @@
             <div id="maincontainer">
                 <table id="simpletable">
                     <tr>
-                        <td><a href="hvac.jsp"><img src="images/hvac.png" /></a></td>
-                        <td><a href="security.jsp"><img src="images/security.png" /></a></td>
+                        <td><a href="hvac.jsp"><img src=<%=hvacSrc%> /></a></td>
+                        <td><a href="security.jsp"><img src=<%=secSrc%> /></a></td>
                     </tr>
                     <tr>
-                        <td><a href="lighting.jsp"><img src="images/lighting.png" /></a></td>
+                        <td><a href="lighting.jsp"><img src=<%=liteSrc%> /></a></td>
                         <td></td>
                     </tr>
                 </table>
