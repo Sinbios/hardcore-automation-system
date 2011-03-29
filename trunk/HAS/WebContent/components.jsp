@@ -20,31 +20,40 @@
 <% String hvacSrc = "";%>
 <% String liteSrc = "";%>
 <% String secSrc = "";%>
+<% String hvacHref = "";%>
+<% String liteHref = "";%>
+<% String secHref = "";%>
 <% if ( hvacConnected )
 	{
 		hvacSrc = "images/hvac.png";
+		hvacHref = "hvac.jsp";
 	}
 	else
 	{
 		hvacSrc = "images/hvac-na.png";
+		hvacHref = "";
 	}
 %>
 <% if ( lightingConnected )
 	{
 		liteSrc = "images/lighting.png";
+		liteHref = "lighting.jsp";
 	}
 	else
 	{
 		liteSrc = "images/lighting-na.png";
+		liteHref = "";
 	}
 %>
 <% if ( securityConnected )
 	{
 		secSrc = "images/security.png";
+		secHref = "security.jsp";
 	}
 	else
 	{
 		secSrc = "images/security-na.png";
+		secHref = "";
 	}
 %>
 <html>
@@ -82,11 +91,11 @@
             <div id="maincontainer">
                 <table id="simpletable">
                     <tr>
-                        <td><a href="hvac.jsp"><img src=<%=hvacSrc%> /></a></td>
-                        <td><a href="security.jsp"><img src=<%=secSrc%> /></a></td>
+                        <td><a href=<%=hvacHref%>><img src=<%=hvacSrc%> /></a></td>
+                        <td><a href=<%=secHref%>><img src=<%=secSrc%> /></a></td>
                     </tr>
                     <tr>
-                        <td><a href="lighting.jsp"><img src=<%=liteSrc%> /></a></td>
+                        <td><a href=<%=liteHref%>><img src=<%=liteSrc%> /></a></td>
                         <td></td>
                     </tr>
                 </table>
